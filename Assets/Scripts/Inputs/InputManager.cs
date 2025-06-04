@@ -56,8 +56,6 @@ public class InputManager : MonoBehaviour
         float zInclination = Mathf.Sin(zAngle * Mathf.Deg2Rad);
 
         Vector2 direction = new Vector2(-zInclination, xInclination);
-        //direction.Normalize();
-        Debug.Log(direction); 
         HandleMovement(direction);
     }
 
