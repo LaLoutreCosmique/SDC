@@ -19,7 +19,7 @@ public class InputManager : MonoBehaviour
         
         if (SystemInfo.supportsGyroscope)
         {
-            //Input.gyro.enabled = true;
+            Input.gyro.enabled = true;
             m_Gyro = Input.gyro;
         }
     }
@@ -28,8 +28,17 @@ public class InputManager : MonoBehaviour
     {
         if (Input.gyro.enabled)
         {
-           //GyroToDirection(m_Gyro.attitude);
+            Quaternion rota = ConvertRightHandedToLeftHandedQuaternion(m_Gyro.attitude);
+            GyroToDirection(rota); 
         }
+    }
+    
+    private Quaternion ConvertRightHandedToLeftHandedQuaternion(Quaternion rightHandedQuaternion)
+    {
+        return new Quaternion (-rightHandedQuaternion.x,
+            -rightHandedQuaternion.z,
+            -rightHandedQuaternion.y,
+            rightHandedQuaternion.w);
     }
     
     void GyroToDirection(Quaternion rotation)
@@ -37,14 +46,13 @@ public class InputManager : MonoBehaviour
         Vector3 eulerAngles = rotation.eulerAngles;
         
         float xAngle = NormalizeAngle(eulerAngles.x);
-        float yAngle = NormalizeAngle(eulerAngles.y);
+        float zAngle = NormalizeAngle(eulerAngles.z);
 
         float xInclination = Mathf.Sin(xAngle * Mathf.Deg2Rad);
-        float yInclination = Mathf.Tan(yAngle * Mathf.Deg2Rad);
+        float zInclination = Mathf.Sin(zAngle * Mathf.Deg2Rad);
 
-        Vector2 direction = new Vector2(xAngle, yAngle);
+        Vector2 direction = new Vector2(-zInclination, xInclination);
         direction.Normalize();
-        Debug.Log(direction);
         HandleMovement(direction);
     }
 
