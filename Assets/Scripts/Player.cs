@@ -5,6 +5,9 @@ public class Player : MonoBehaviour
 {
     Rigidbody m_PlayerRb;
     
+    [SerializeField] float m_Speed;
+    [SerializeField] float m_Acceleration;
+    
     [HideInInspector] public Vector3 moveDirection;
 
     private void Start()
@@ -20,6 +23,6 @@ public class Player : MonoBehaviour
     void Move()
     {
         Vector3 movement = new Vector3(moveDirection.x, 0, moveDirection.y);
-        m_PlayerRb.AddForce(movement * 3f);
+        m_PlayerRb.linearVelocity = Vector3.Lerp(m_PlayerRb.linearVelocity, movement * m_Speed, m_Acceleration * Time.fixedDeltaTime);
     }
 }

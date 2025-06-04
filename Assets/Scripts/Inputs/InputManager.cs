@@ -9,6 +9,8 @@ public class InputManager : MonoBehaviour
     PlayerInputs.PlayerActions m_PlayerActions;
     Gyroscope m_Gyro;
     
+    Quaternion m_CalibrationRotation;
+    
     void Start()
     {
         m_PlayerInputs = new PlayerInputs();
@@ -21,6 +23,7 @@ public class InputManager : MonoBehaviour
         {
             Input.gyro.enabled = true;
             m_Gyro = Input.gyro;
+            CalibrateGyro();
         }
     }
 
@@ -29,7 +32,8 @@ public class InputManager : MonoBehaviour
         if (Input.gyro.enabled)
         {
             Quaternion rota = ConvertRightHandedToLeftHandedQuaternion(m_Gyro.attitude);
-            GyroToDirection(rota); 
+            rota *= Quaternion.Inverse(m_CalibrationRotation);
+            RotaToDirection(rota); 
         }
     }
     
@@ -41,7 +45,7 @@ public class InputManager : MonoBehaviour
             rightHandedQuaternion.w);
     }
     
-    void GyroToDirection(Quaternion rotation)
+    void RotaToDirection(Quaternion rotation)
     {
         Vector3 eulerAngles = rotation.eulerAngles;
         
@@ -52,7 +56,8 @@ public class InputManager : MonoBehaviour
         float zInclination = Mathf.Sin(zAngle * Mathf.Deg2Rad);
 
         Vector2 direction = new Vector2(-zInclination, xInclination);
-        direction.Normalize();
+        //direction.Normalize();
+        Debug.Log(direction); 
         HandleMovement(direction);
     }
 
@@ -70,5 +75,11 @@ public class InputManager : MonoBehaviour
         if (m_Player == null) return;
         
         m_Player.moveDirection = direction;
+    }
+
+    // CALLED BY BUTTON (flemme)
+    public void CalibrateGyro()
+    {
+        m_CalibrationRotation = ConvertRightHandedToLeftHandedQuaternion(m_Gyro.attitude);
     }
 }
