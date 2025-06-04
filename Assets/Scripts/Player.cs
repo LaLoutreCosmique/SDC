@@ -23,6 +23,11 @@ public class Player : MonoBehaviour
     void Move()
     {
         Vector3 movement = new Vector3(moveDirection.x, 0, moveDirection.y);
+
+        # if UNITY_ANDROID
+            movement = -movement;
+        #endif
+
         m_PlayerRb.linearVelocity = Vector3.Lerp(m_PlayerRb.linearVelocity, movement * m_Speed, m_Acceleration * Time.fixedDeltaTime);
     }
 }
