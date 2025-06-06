@@ -1,21 +1,24 @@
+using System.Collections.Generic;
+using System;
 using UnityEngine;
+using System.Linq;
+using NaughtyAttributes;
 
 public class Tile : MonoBehaviour
 {
     [Header("Tile:")]
     [SerializeField] Model model;
+    [Dropdown("TriggerTypes")] [OnValueChanged("OnTriggerTypeChanged")] [SerializeField] string triggerType;
     [SerializeField] bool canDecay;
     [SerializeField] bool isFlipped;
 
-    [Header("Triggers:")]
-    [SerializeField] int triggerId;
-    [SerializeField] TriggerType triggerType;
-    [SerializeField] bool isTriggered;
-
     [Header("References:")]
     [SerializeField] Transform modelsParent;
-    [SerializeField] Transform triggersOffParent;
-    [SerializeField] Transform triggersOnParent;
+
+    [HideInInspector] public Room parentRoom;
+
+    private List<string> TriggerTypes { get { return TypeToString(); }}
+    private List<Type> CachedTriggerTypes = new();
 
     public enum Model
     {
@@ -24,30 +27,62 @@ public class Tile : MonoBehaviour
         Pillar = 2,
     }
 
-    public enum TriggerType
-    {
-        None = 0,
-        Lever = 1,
-        Door = 2,
-        JumpPad = 3,
-    }
 
     private void OnValidate()
     {
         // rotation
         transform.eulerAngles = Vector3.up * (isFlipped ? 90 : 0);
-
-        // on/off
-        triggersOffParent.gameObject.SetActive(!isTriggered);
-        triggersOnParent.gameObject.SetActive(isTriggered);
-
-        // visuals toggle
-        EnableChild((int)triggerType, triggersOnParent);
-        EnableChild((int)triggerType, triggersOffParent);
         EnableChild((int)model, modelsParent);
     }
 
-    void EnableChild(int index, Transform parent)
+    private void OnTriggerTypeChanged()
+    {
+        if (TryGetComponent<TriggerTile>(out TriggerTile triggerTile))
+        {
+            if (triggerTile.name != triggerType)
+            {
+                DestroyImmediate(triggerTile.model);
+                DestroyImmediate(triggerTile);
+                if (triggerType != "None")
+                {
+                    TriggerTile newTT = gameObject.AddComponent(StringToType(triggerType)) as TriggerTile;
+                    newTT.InitModel();
+                }
+
+            }
+        }
+        else
+        {
+            if (triggerType != "None")
+            {
+                TriggerTile newTT = gameObject.AddComponent(StringToType(triggerType)) as TriggerTile;
+                newTT.InitModel();
+            }
+        }
+    }
+
+    Type StringToType(string typeName)
+    {
+        return GetAllDerivedClasses().Find(t => t.ToString() == typeName);
+    }
+
+    List<string> TypeToString()
+    {
+        var newList = GetAllDerivedClasses().Select(t => t.ToString()).ToList();
+        newList.Insert(0, "None");
+        return newList;
+    }
+
+    List<Type> GetAllDerivedClasses()
+    {
+        if (CachedTriggerTypes.Count == 0)
+            CachedTriggerTypes = AppDomain.CurrentDomain.GetAssemblies()
+            .SelectMany(assembly => assembly.GetTypes())
+            .Where(type => type.IsSubclassOf(typeof(TriggerTile))).ToList();
+        return CachedTriggerTypes;
+    }
+
+    public void EnableChild(int index, Transform parent)
     {
         // diable all child
         foreach (Transform child in parent)

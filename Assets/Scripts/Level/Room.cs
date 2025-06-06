@@ -24,4 +24,10 @@ public class Room : MonoBehaviour
         Medium = 1,
         Hard = 2,
     }
+
+    private void Awake()
+    {
+        foreach (var childTile in GetComponentsInChildren<Tile>())
+            childTile.parentRoom = this;
+    }
 }
