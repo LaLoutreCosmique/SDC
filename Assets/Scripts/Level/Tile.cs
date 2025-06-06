@@ -25,6 +25,7 @@ public class Tile : MonoBehaviour
         Floor = 0,
         Wall = 1,
         Pillar = 2,
+        Hole = 3,
     }
 
 

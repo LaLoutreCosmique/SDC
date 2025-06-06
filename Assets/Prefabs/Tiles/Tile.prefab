@@ -248,6 +248,7 @@ Transform:
   - {fileID: 3203119143900987184}
   - {fileID: 2227867248177377723}
   - {fileID: 8343572394896809369}
+  - {fileID: 2647935576034326306}
   m_Father: {fileID: 5486838051108350512}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3741670478238060871
@@ -437,7 +438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: 0
-  triggerType: 
+  triggerType: None
   canDecay: 1
   isFlipped: 0
   modelsParent: {fileID: 5918339140082287910}
@@ -634,5 +635,36 @@ Transform:
   m_Children:
   - {fileID: 7451000411251883106}
   - {fileID: 5649453051619677069}
+  m_Father: {fileID: 5918339140082287910}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8935866120774172998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2647935576034326306}
+  m_Layer: 0
+  m_Name: Hole
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2647935576034326306
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8935866120774172998}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 5918339140082287910}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
