@@ -3,6 +3,7 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     [SerializeField] Difficulty difficulty;
+    [SerializeField, Range(1, 10)] int roomLength;
 
     /// <summary>
     /// The difficulty to complete the room.

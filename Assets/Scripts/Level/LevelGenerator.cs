@@ -22,7 +22,7 @@ public class LevelGenerator : MonoBehaviour
 
     void Start()
     {
-        loadedRooms = Resources.LoadAll<Room>("Rooms").ToList();
+        loadedRooms = Resources.LoadAll<Room>("Rooms/PlayableRooms").ToList();
 
         InitBags();
         SpawnNextRoom();
