@@ -7,8 +7,10 @@ public class Player : MonoBehaviour
     
     [SerializeField] float m_Speed;
     [SerializeField] float m_Acceleration;
+    [SerializeField] float m_FallForce;
     
     [HideInInspector] public Vector3 moveDirection;
+    [HideInInspector] public Vector3 fallForce;
 
     private void Start()
     {
@@ -18,6 +20,21 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+        
+        Ray ray = new Ray(transform.position, Vector3.down);
+        if (!Physics.Raycast(ray))
+        {
+            fallForce = Vector3.down * m_FallForce;
+        }
+        else
+        {
+            fallForce = Vector3.zero;
+        }
+
+        if (transform.position.y < -2)
+        {
+            LevelGenerator.Instance.Restart();
+        }
     }
 
     void Move()
@@ -28,6 +45,6 @@ public class Player : MonoBehaviour
             movement = -movement;
         #endif
 
-        m_PlayerRb.linearVelocity = Vector3.Lerp(m_PlayerRb.linearVelocity, movement * m_Speed, m_Acceleration * Time.fixedDeltaTime);
+        m_PlayerRb.linearVelocity = Vector3.Lerp(m_PlayerRb.linearVelocity, (movement + fallForce) * m_Speed, m_Acceleration * Time.fixedDeltaTime);
     }
 }

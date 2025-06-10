@@ -8,7 +8,7 @@ public class Room : MonoBehaviour
 {
     [SerializeField] Difficulty difficulty;
     [OnValueChanged("SetRoomLength")]
-    [Range(1, 10)] public int roomLength;
+    [Range(1, 20)] public int roomLength;
     LevelGenerator levelGenerator;
 
     /// <summary>

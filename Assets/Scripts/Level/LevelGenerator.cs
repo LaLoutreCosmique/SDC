@@ -1,10 +1,15 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class LevelGenerator : MonoBehaviour
 {
+    public static LevelGenerator Instance;
+    
     /// <summary>
     /// 0 for random.
     /// </summary>
@@ -14,12 +19,18 @@ public class LevelGenerator : MonoBehaviour
     List<Room> loadedRooms = new();
     List<List<Room>> staticBags = new();
     List<List<Room>> currentBags = new();
-    List<Room> spawnedRooms = new();
+    public List<Room> spawnedRooms = new();
     System.Random bagsRnd;
     int currentRoomId = -1;
     private Vector3 nextPos;
 
     const int bagsAmount = 2;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
 
     void Start()
     {
@@ -36,7 +47,7 @@ public class LevelGenerator : MonoBehaviour
             SpawnNextRoom();
 
         
-        Vector3 offset = new Vector3(0, 14, -13);
+        //Vector3 offset = new Vector3(0, 14, -13);
         cameraTest.transform.position = Vector3.Lerp(cameraTest.transform.position, nextPos, Time.deltaTime * 10);
     }
 
@@ -92,7 +103,12 @@ public class LevelGenerator : MonoBehaviour
             spawnedRooms.RemoveAt(0);
         }
         
-        if (spawnedRooms.Count != 1)
+        if (spawnedRooms.Count != 1) // Disable cam movement for the first level
             nextPos = cameraTest.position + (Vector3.forward * spawnedRooms[^1].roomLength);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

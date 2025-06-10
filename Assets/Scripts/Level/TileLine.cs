@@ -9,7 +9,7 @@ public class TileLine : MonoBehaviour
 #if UNITY_EDITOR
     public Tile TilePrefab;
     [OnValueChanged("SetLineLength")]
-    [Range(1, 10)] public int LineLength;
+    [Range(1, 20)] public int LineLength;
     
     public Tile[] currentTiles { get; private set; }
 
