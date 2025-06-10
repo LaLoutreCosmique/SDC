@@ -53,6 +53,7 @@ public class Room : MonoBehaviour
             GameObject emptyGO = new GameObject();
             TileLine newLineGO = emptyGO.AddComponent<TileLine>();
             TileLine newLine = Instantiate(newLineGO, transform).Setup(tileLines[^1].TilePrefab, tileLines[^1].LineLength);
+            DestroyImmediate(newLineGO.gameObject);
             newLine.transform.position = new Vector3(0, 0, tileLines[^1].transform.position.z+1);
             tileLines.Add(newLine);
             newLine.name = "Line " + tileLines.IndexOf(tileLines[^1]);
