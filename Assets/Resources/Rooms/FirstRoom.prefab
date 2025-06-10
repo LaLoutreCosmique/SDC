@@ -1695,7 +1695,8 @@ PrefabInstance:
       value: FirstRoom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1307573456383251568, guid: 7e798e9dfe403bb4b98031c0f318ee02, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1350823576842083213, guid: 7e798e9dfe403bb4b98031c0f318ee02, type: 3}
       insertIndex: -1

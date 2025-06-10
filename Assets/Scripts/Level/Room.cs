@@ -9,6 +9,7 @@ public class Room : MonoBehaviour
     [SerializeField] Difficulty difficulty;
     [OnValueChanged("SetRoomLength")]
     [Range(1, 10)] public int roomLength;
+    LevelGenerator levelGenerator;
 
     /// <summary>
     /// The difficulty to complete the room.
@@ -35,6 +36,12 @@ public class Room : MonoBehaviour
     {
         foreach (var childTile in GetComponentsInChildren<Tile>())
             childTile.parentRoom = this;
+    }
+
+    public Room Setup(LevelGenerator lvlGenerator)
+    {
+        levelGenerator = lvlGenerator;
+        return this;
     }
 
     private void SetRoomLength()
@@ -72,5 +79,10 @@ public class Room : MonoBehaviour
             DestroyImmediate(tileLines[^1].gameObject);
             tileLines.RemoveAt(tileLines.Count - 1);
         }
+    }
+
+    public void ChangeLevel()
+    {
+        levelGenerator.SpawnNextRoom();
     }
 }
