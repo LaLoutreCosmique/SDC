@@ -17,12 +17,14 @@ public class LevelGenerator : MonoBehaviour
     List<Room> spawnedRooms = new();
     System.Random bagsRnd;
     int currentRoomId = -1;
+    private Vector3 nextPos;
 
     const int bagsAmount = 2;
 
     void Start()
     {
         loadedRooms = Resources.LoadAll<Room>("Rooms/PlayableRooms").ToList();
+        nextPos = cameraTest.position;
 
         InitBags();
         SpawnNextRoom();
@@ -33,9 +35,9 @@ public class LevelGenerator : MonoBehaviour
         if (Keyboard.current.kKey.wasPressedThisFrame)
             SpawnNextRoom();
 
-        var nextPos = Vector3.forward * currentRoomId * 8;
-        var offset = new Vector3(0, 14, -13);
-        cameraTest.transform.position = Vector3.Lerp(cameraTest.transform.position, nextPos + offset, Time.deltaTime * 10);
+        
+        Vector3 offset = new Vector3(0, 14, -13);
+        cameraTest.transform.position = Vector3.Lerp(cameraTest.transform.position, nextPos, Time.deltaTime * 10);
     }
 
     void InitBags()
@@ -48,7 +50,7 @@ public class LevelGenerator : MonoBehaviour
 
         // generate bags
         staticBags.Clear();
-        var shuffledRooms = loadedRooms.OrderBy(x => rnd.Next()).ToList();
+        List<Room> shuffledRooms = loadedRooms.OrderBy(x => rnd.Next()).ToList();
 
         int sliceSize = loadedRooms.Count() / bagsAmount;
         for (int bagIndex = 0; bagIndex < bagsAmount; bagIndex++)
@@ -72,12 +74,22 @@ public class LevelGenerator : MonoBehaviour
         }
 
         // get next room
-        var nextRoom = currentBags[0][0];
+        Room nextRoom = currentBags[0][0];
         currentBags[0].RemoveAt(0);
         if (currentBags[0].Count == 0)
             currentBags.RemoveAt(0);
 
-        var newRoom = Instantiate(nextRoom, Vector3.forward * (currentRoomId + 1) * 8, Quaternion.identity);
+        if (spawnedRooms.Count > 0)
+        {
+            Debug.Log(spawnedRooms[^1].roomLength/2 + spawnedRooms[^1].roomLength%2);
+            Debug.Log("+ " + nextRoom.roomLength/2 + nextRoom.roomLength%2);
+            Debug.Log("nextRoom.roomLength%2) : " + nextRoom.roomLength%2);
+            Debug.Log("d");
+        }
+        Vector3 newRoomPos = spawnedRooms.Count > 0
+            ? Vector3.forward * (spawnedRooms[^1].transform.position.z + spawnedRooms[^1].roomLength)
+            : Vector3.forward * 5; //TODO c'est super moche mais tant pis... 5 = taille de la firstRoom 
+        Room newRoom = Instantiate(nextRoom, newRoomPos, Quaternion.identity);
         spawnedRooms.Add(newRoom);
 
         // remove previous rooms
@@ -86,5 +98,7 @@ public class LevelGenerator : MonoBehaviour
             Destroy(spawnedRooms[0].gameObject);
             spawnedRooms.RemoveAt(0);
         }
+        
+        nextPos = cameraTest.position + (Vector3.forward * spawnedRooms[^1].roomLength);
     }
 }

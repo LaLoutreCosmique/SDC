@@ -881,7 +881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7fa474d67629743aa2e542e9864a05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: 0
+  seed: 651231
   cameraTest: {fileID: 1553252448}
 --- !u!114 &2030548928
 MonoBehaviour:
