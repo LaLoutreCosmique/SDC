@@ -16,9 +16,10 @@ public class TileLine : MonoBehaviour
     public TileLine Setup(Tile prefab, int length)
     {
         TilePrefab = prefab;
+        LineLength = length;
         Tile newTile = (Tile)PrefabUtility.InstantiatePrefab(TilePrefab, transform);
         newTile.transform.position = Vector3.zero;
-        AddTiles(new List<Tile> {newTile}, length);
+        SetLineLength();
 
         return this;
     }
@@ -43,7 +44,7 @@ public class TileLine : MonoBehaviour
             tiles.RemoveAt(i-1);
         }
         
-        tiles[0].transform.position = Vector3.zero;
+        tiles[0].transform.localPosition = Vector3.zero;
     }
 
     void AddTiles(List<Tile> tiles, int amount)
@@ -54,12 +55,12 @@ public class TileLine : MonoBehaviour
             {
                 foreach (Tile tile in tiles)
                 {
-                    tile.transform.position = new Vector3(tile.transform.position.x - 1, 0, 0);
+                    tile.transform.localPosition = new Vector3(tile.transform.localPosition.x - 1, 0, 0);
                 }
             } 
             
             Tile newTile = (Tile)PrefabUtility.InstantiatePrefab(TilePrefab, transform);
-            newTile.transform.position = new Vector3(tiles[^1].transform.position.x + 1, 0, 0);
+            newTile.transform.localPosition = new Vector3(tiles[^1].transform.localPosition.x + 1, 0, 0);
             tiles.Add(newTile);
             newTile.name = "Tile " + tiles.IndexOf(newTile);
         }
@@ -73,7 +74,7 @@ public class TileLine : MonoBehaviour
             {
                 foreach (Tile tile in tiles)
                 {
-                    tile.transform.position = new Vector3(tile.transform.position.x + 1, 0, 0);
+                    tile.transform.localPosition = new Vector3(tile.transform.localPosition.x + 1, 0, 0);
                 }
             } 
             

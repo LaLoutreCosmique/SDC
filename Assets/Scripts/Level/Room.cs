@@ -56,6 +56,11 @@ public class Room : MonoBehaviour
             newLine.transform.position = new Vector3(0, 0, tileLines[^1].transform.position.z+1);
             tileLines.Add(newLine);
             newLine.name = "Line " + tileLines.IndexOf(tileLines[^1]);
+
+            for (int j = 0; j < newLine.currentTiles.Length; j++)
+            {
+                newLine.currentTiles[j] = tileLines[^1].currentTiles[j];
+            }
         }
     }
     
