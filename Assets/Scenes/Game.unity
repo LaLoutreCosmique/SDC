@@ -215,6 +215,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FirstRoom
       objectReference: {fileID: 0}
+    - target: {fileID: 1903251139843100634, guid: 7a5435ebac96efd478d31e5c86cf57d9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8200159400312991003, guid: 7a5435ebac96efd478d31e5c86cf57d9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

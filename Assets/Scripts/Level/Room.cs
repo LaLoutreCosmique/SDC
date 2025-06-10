@@ -1,8 +1,13 @@
+using System.Collections.Generic;
+using System.Linq;
+using NaughtyAttributes;
+using UnityEditor;
 using UnityEngine;
 
 public class Room : MonoBehaviour
 {
     [SerializeField] Difficulty difficulty;
+    [OnValueChanged("SetRoomLength")]
     [SerializeField, Range(1, 10)] int roomLength;
 
     /// <summary>
@@ -30,5 +35,36 @@ public class Room : MonoBehaviour
     {
         foreach (var childTile in GetComponentsInChildren<Tile>())
             childTile.parentRoom = this;
+    }
+
+    private void SetRoomLength()
+    {
+        List<TileLine> tileLines = GetComponentsInChildren<TileLine>().ToList();
+        int difference = roomLength - tileLines.Count;
+        
+        if (difference > 0) AddLineToRoom(tileLines, difference);
+        if (difference < 0) RemoveLineToRoom(tileLines, -difference);
+    }
+
+    private void AddLineToRoom(List<TileLine> tileLines, int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            GameObject emptyGO = new GameObject();
+            TileLine newLineGO = emptyGO.AddComponent<TileLine>();
+            TileLine newLine = Instantiate(newLineGO, transform).Setup(tileLines[^1].TilePrefab, tileLines[^1].LineLength);
+            newLine.transform.position = new Vector3(0, 0, tileLines[^1].transform.position.z+1);
+            tileLines.Add(newLine);
+            newLine.name = "Line " + tileLines.IndexOf(tileLines[^1]);
+        }
+    }
+    
+    private void RemoveLineToRoom(List<TileLine> tileLines, int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            DestroyImmediate(tileLines[^1].gameObject);
+            tileLines.RemoveAt(tileLines.Count - 1);
+        }
     }
 }

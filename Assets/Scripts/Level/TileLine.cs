@@ -7,10 +7,22 @@ using UnityEngine;
 public class TileLine : MonoBehaviour
 {
 #if UNITY_EDITOR
-    [SerializeField] Tile TilePrefab;
+    public Tile TilePrefab;
     [OnValueChanged("SetLineLength")]
-    [SerializeField, Range(1, 10)] int LineLength;
+    [Range(1, 10)] public int LineLength;
+    
+    public Tile[] currentTiles { get; private set; }
 
+    public TileLine Setup(Tile prefab, int length)
+    {
+        TilePrefab = prefab;
+        Tile newTile = (Tile)PrefabUtility.InstantiatePrefab(TilePrefab, transform);
+        newTile.transform.position = Vector3.zero;
+        AddTiles(new List<Tile> {newTile}, length);
+
+        return this;
+    }
+    
     void SetLineLength()
     {
         List<Tile> tiles = GetComponentsInChildren<Tile>().ToList();
@@ -19,6 +31,8 @@ public class TileLine : MonoBehaviour
         if (LineLength == 1) SetToOneTile(tiles);
         else if (diff > 0) AddTiles(tiles, diff*2);
         else if (diff < 0) RemoveTiles(tiles, -diff*2);
+        
+        currentTiles = GetComponentsInChildren<Tile>();
     }
 
     void SetToOneTile(List<Tile> tiles)
@@ -47,6 +61,7 @@ public class TileLine : MonoBehaviour
             Tile newTile = (Tile)PrefabUtility.InstantiatePrefab(TilePrefab, transform);
             newTile.transform.position = new Vector3(tiles[^1].transform.position.x + 1, 0, 0);
             tiles.Add(newTile);
+            newTile.name = "Tile " + tiles.IndexOf(newTile);
         }
     }
 
