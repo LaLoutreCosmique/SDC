@@ -23,6 +23,7 @@ public class LevelGenerator : MonoBehaviour
     System.Random bagsRnd;
     int currentRoomId = -1;
     private Vector3 nextPos;
+    [SerializeField] Vector3 cameraOffset;
 
     const int bagsAmount = 2;
 
@@ -47,7 +48,6 @@ public class LevelGenerator : MonoBehaviour
             SpawnNextRoom();
 
         
-        //Vector3 offset = new Vector3(0, 14, -13);
         cameraTest.transform.position = Vector3.Lerp(cameraTest.transform.position, nextPos, Time.deltaTime * 10);
     }
 
@@ -103,8 +103,20 @@ public class LevelGenerator : MonoBehaviour
             spawnedRooms.RemoveAt(0);
         }
         
+        // cam pos
         if (spawnedRooms.Count != 1) // Disable cam movement for the first level
-            nextPos = cameraTest.position + (Vector3.forward * spawnedRooms[^1].roomLength);
+        {
+            int roomWidth = spawnedRooms[^2].GetRoomWidth() * 2 + 1;
+            int lvlOffset = spawnedRooms[^2].roomLength > roomWidth
+                ? spawnedRooms[^2].roomLength
+                : roomWidth;
+            
+            Debug.Log(spawnedRooms[^2].roomLength);
+            Debug.Log(roomWidth);
+            Debug.Log(lvlOffset + "ferf zefzef                a");
+            
+            nextPos = new Vector3(cameraOffset.x, cameraOffset.y + lvlOffset*1.2f, cameraOffset.z - lvlOffset/2*1.2f) + spawnedRooms[^2].transform.position;
+        }
     }
 
     public void Restart()

@@ -85,4 +85,16 @@ public class Room : MonoBehaviour
     {
         levelGenerator.SpawnNextRoom();
     }
+
+    public int GetRoomWidth()
+    {
+        TileLine[] tileLines = GetComponentsInChildren<TileLine>();
+        int max = 0;
+        foreach (TileLine line in tileLines)
+        {
+            if (line.LineLength > max) max = line.LineLength;
+        }
+        
+        return max;
+    }
 }

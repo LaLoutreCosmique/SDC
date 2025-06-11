@@ -511,13 +511,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553252444}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268277, y: -0, z: -0, w: 0.92387986}
-  m_LocalPosition: {x: 0, y: 14, z: -13}
+  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
+  m_LocalPosition: {x: 0, y: 14, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
 --- !u!1 &1972913165
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,9 +865,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7fa474d67629743aa2e542e9864a05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: 651231
+  seed: 0
   cameraTest: {fileID: 1553252448}
   spawnedRooms: []
+  cameraOffset: {x: 0, y: 8, z: -2}
 --- !u!114 &2030548928
 MonoBehaviour:
   m_ObjectHideFlags: 0
