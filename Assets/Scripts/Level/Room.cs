@@ -11,20 +11,22 @@ public class Room : MonoBehaviour
     [Range(1, 20)] public int roomLength;
     LevelGenerator levelGenerator;
 
-    /// <summary>
-    /// The difficulty to complete the room.
-    /// 
-    /// Easy:
-    /// One step, fast to complete.
-    /// 
-    /// Medium:
-    /// Multiple steps, easy obstacles (walls/pillars).
-    /// 
-    /// Hard:
-    /// Multiple steps, hard obstacles (holes/jumps), and distubances (enemies).
-    /// 
-    /// </summary>
-    public enum Difficulty
+	private List<Tile> tiles = new();
+
+	/// <summary>
+	/// The difficulty to complete the room.
+	/// 
+	/// Easy:
+	/// One step, fast to complete.
+	/// 
+	/// Medium:
+	/// Multiple steps, easy obstacles (walls/pillars).
+	/// 
+	/// Hard:
+	/// Multiple steps, hard obstacles (holes/jumps), and distubances (enemies).
+	/// 
+	/// </summary>
+	public enum Difficulty
     {
         Unspecified = -1,
         Easy = 0,
@@ -38,7 +40,28 @@ public class Room : MonoBehaviour
             childTile.parentRoom = this;
     }
 
-    public Room Setup(LevelGenerator lvlGenerator)
+	private void Start()
+    {
+	    tiles = GetComponentsInChildren<Tile>().ToList();
+        foreach (Tile tile in tiles)
+		{
+			tile.parentRoom = this;
+            if (tile.triggerType != "None")
+			{
+				if (tile.TryGetComponent<TriggerTile>(out TriggerTile triggerTile))
+				{
+					triggerTile.SetTile(tile);
+				}
+			}
+		}
+	}
+
+    public List<Tile> GetAllTiles()
+	{
+		return tiles;
+	}
+
+	public Room Setup(LevelGenerator lvlGenerator)
     {
         levelGenerator = lvlGenerator;
         return this;

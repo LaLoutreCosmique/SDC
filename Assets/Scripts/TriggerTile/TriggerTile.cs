@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using System.Collections.Generic;
 using UnityEngine;
 using static Tile;
 
@@ -6,12 +7,12 @@ using static Tile;
 public class TriggerTile : MonoBehaviour
 {
     [Header("Global Settings:")]
-    [SerializeField] [MaxValue(4)] int triggerId;
-    [SerializeField] bool isTriggered;
+	[SerializeField] public List<int> triggerIds = new();
+	[SerializeField] bool isTriggered;
     [SerializeField] [OnValueChanged("InitModel")] GameObject modelPrefab;
 
     protected Tile tile;
-    protected Room parentRoom => tile.parentRoom;
+    protected Room parentRoom;
     public GameObject model;
 
     public void InitModel()
@@ -20,8 +21,16 @@ public class TriggerTile : MonoBehaviour
             DestroyImmediate(model);
 
         if (modelPrefab)
+        {
             model = Instantiate(modelPrefab, transform);
-    }
+        }
+	}
+
+    public void SetTile(Tile tile)
+    {
+        this.tile = tile;
+		this.parentRoom = tile.parentRoom;
+	}
 
     private void OnTriggerEnter(Collider other)
     {

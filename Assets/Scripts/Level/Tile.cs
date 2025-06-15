@@ -8,7 +8,7 @@ public class Tile : MonoBehaviour
 {
     [Header("Tile:")]
     [SerializeField] Model model;
-    [Dropdown("TriggerTypes")] [OnValueChanged("OnTriggerTypeChanged")] [SerializeField] string triggerType;
+    [Dropdown("TriggerTypes")] [OnValueChanged("OnTriggerTypeChanged")] public string triggerType;
     [SerializeField] bool canDecay;
     [SerializeField] bool isFlipped;
 
