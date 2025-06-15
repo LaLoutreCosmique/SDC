@@ -9,7 +9,10 @@ public class Room : MonoBehaviour
     [SerializeField] Difficulty difficulty;
     [OnValueChanged("SetRoomLength")]
     [Range(1, 20)] public int roomLength;
+    
     LevelGenerator levelGenerator;
+    List<TriggerTile> playerTriggers = new();
+    List<TriggerTile> tilesTriggers = new();
 
     /// <summary>
     /// The difficulty to complete the room.
@@ -42,6 +45,11 @@ public class Room : MonoBehaviour
     {
         levelGenerator = lvlGenerator;
         return this;
+    }
+
+    public void OnTriggerUpdated()
+    {
+
     }
 
     private void SetRoomLength()
