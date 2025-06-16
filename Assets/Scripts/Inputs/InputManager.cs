@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Gyroscope = UnityEngine.Gyroscope;
 
 public class InputManager : MonoBehaviour
 {
@@ -7,7 +9,6 @@ public class InputManager : MonoBehaviour
     
     PlayerInputs m_PlayerInputs;
     PlayerInputs.PlayerActions m_PlayerActions;
-    Gyroscope m_Gyro;
     
     Quaternion m_CalibrationRotation;
     
@@ -21,8 +22,7 @@ public class InputManager : MonoBehaviour
         
         if (SystemInfo.supportsGyroscope)
         {
-            Input.gyro.enabled = true;
-            m_Gyro = Input.gyro;
+            InputSystem.EnableDevice(AttitudeSensor.current);
             CalibrateGyro();
         }
     }
@@ -31,7 +31,8 @@ public class InputManager : MonoBehaviour
     {
         if (Input.gyro.enabled)
         {
-            Quaternion rota = ConvertRightHandedToLeftHandedQuaternion(m_Gyro.attitude);
+            Quaternion rota = AttitudeSensor.current.attitude.ReadValue(); 
+            rota = ConvertRightHandedToLeftHandedQuaternion(rota);
             rota *= Quaternion.Inverse(m_CalibrationRotation);
             RotaToDirection(rota); 
         }
@@ -78,6 +79,6 @@ public class InputManager : MonoBehaviour
     // CALLED BY BUTTON (flemme)
     public void CalibrateGyro()
     {
-        m_CalibrationRotation = ConvertRightHandedToLeftHandedQuaternion(m_Gyro.attitude);
+        m_CalibrationRotation = ConvertRightHandedToLeftHandedQuaternion(AttitudeSensor.current.attitude.ReadValue());
     }
 }
