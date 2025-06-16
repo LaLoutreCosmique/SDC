@@ -54,9 +54,6 @@ public class Player : MonoBehaviour
 			fallForce = Vector3.down * m_FallForce;
 		}
 
-#if UNITY_ANDROID
-			movement = -movement;
-#endif
 		m_PlayerRb.linearVelocity = Vector3.Lerp(m_PlayerRb.linearVelocity, (movement + fallForce) * m_Speed, m_Acceleration * Time.fixedDeltaTime);
 		if (m_PlayerRb.linearVelocity.magnitude <= 0.01f)
 		{

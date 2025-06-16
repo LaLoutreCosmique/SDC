@@ -3,19 +3,37 @@ using UnityEngine;
 
 public class TTLever : TriggerTile
 {
+	[SerializeField] private bool activated = false;
+	private Animator animator;
+
+	private void Start()
+	{
+		animator = model.GetComponent<Animator>() ?? model.AddComponent<Animator>();
+		animator.SetBool("Activated", activated);
+	}
+
 	public override void OnPlayerTrigger(Player player)
 	{
-		parentRoom.GetAllTiles().ForEach(tile =>
+		foreach (var tile in parentRoom.GetAllTiles())
 		{
 			if (tile.triggerType == "TTDoor")
 			{
-				TTDoor door = tile.GetComponent<TTDoor>();
-				if (door != null)
+				var door = tile.GetComponent<TTDoor>();
+				if (door != null && triggerIds.Any(id => door.triggerIds.Contains(id)))
 				{
-					if (triggerIds.Any(id => door.triggerIds.Contains(id)))
-						door.OnTileTrigger();
+					door.OnTileTrigger();
 				}
 			}
-		});
+		}
+		activated = !activated;
+		animator.SetBool("Activated", activated);
 	}
+
+	public override void TTReset()
+	{
+		activated = false;
+		animator.SetBool("Activated", activated);
+	}
+
+	public bool IsActivated() => activated;
 }

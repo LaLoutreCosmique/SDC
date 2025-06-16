@@ -36,7 +36,7 @@ public class Tile : MonoBehaviour
         EnableChild((int)model, modelsParent);
     }
 
-    private void OnTriggerTypeChanged()
+	private void OnTriggerTypeChanged()
     {
         if (TryGetComponent<TriggerTile>(out TriggerTile triggerTile))
         {

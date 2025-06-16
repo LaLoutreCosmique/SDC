@@ -47,4 +47,8 @@ public class TriggerTile : MonoBehaviour
     {
         
     }
+
+    public virtual void TTReset()
+	{
+	}
 }
