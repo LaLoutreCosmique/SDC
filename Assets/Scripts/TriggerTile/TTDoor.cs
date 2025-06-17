@@ -38,6 +38,7 @@ public class TTDoor : TriggerTile
 	[SerializeField] private bool isOpen = false;
 	private Animator animator;
 	[SerializeField] private List<DoorCondition> conditions;
+	private BoxCollider doorCollider;
 
 	private List<Tile> roomTiles;
 	private List<TTLever> roomLevers;
@@ -48,14 +49,21 @@ public class TTDoor : TriggerTile
 		animator = model.GetComponent<Animator>();
 		animator.SetBool("IsOpen", isOpen);
 		animator.Play(isOpen ? "Opened" : "Closed");
+
 		roomTiles = parentRoom.GetAllTiles();
 		roomLevers = roomTiles.Where(tile => tile.triggerType == "TTLever").Select(tile => tile.GetComponent<TTLever>()).ToList();
 		roomDoors = roomTiles.Where(tile => tile.triggerType == "TTDoor").Select(tile => tile.GetComponent<TTDoor>()).ToList();
+
+		doorCollider = model.GetComponentInChildren<BoxCollider>();
+		doorCollider.enabled = !isOpen;
 	}
 
 	public override void OnTileTrigger()
 	{
-		if (!isOpen && CheckAllConditions())
+		if (!CheckAllConditions())
+			return;
+
+		if (!isOpen)
 		{
 			OpenDoor();
 		}
@@ -74,12 +82,14 @@ public class TTDoor : TriggerTile
 	{
 		animator.SetBool("IsOpen", true);
 		isOpen = true;
+		doorCollider.enabled = false;
 	}
 
 	private void CloseDoor()
 	{
 		animator.SetBool("IsOpen", false);
 		isOpen = false;
+		doorCollider.enabled = true;
 	}
 
 	public bool CheckAllConditions()
