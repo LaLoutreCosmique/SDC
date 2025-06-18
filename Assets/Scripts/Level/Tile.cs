@@ -8,7 +8,7 @@ public class Tile : MonoBehaviour
 {
     [Header("Tile:")]
     [SerializeField] Model model;
-    [Dropdown("TriggerTypes")] [OnValueChanged("OnTriggerTypeChanged")] [SerializeField] string triggerType;
+    [Dropdown("TriggerTypes")] [OnValueChanged("OnTriggerTypeChanged")] public string triggerType;
     [SerializeField] bool canDecay;
     [SerializeField] bool isFlipped;
 
@@ -36,7 +36,7 @@ public class Tile : MonoBehaviour
         EnableChild((int)model, modelsParent);
     }
 
-    private void OnTriggerTypeChanged()
+	private void OnTriggerTypeChanged()
     {
         if (TryGetComponent<TriggerTile>(out TriggerTile triggerTile))
         {
