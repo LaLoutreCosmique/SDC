@@ -6,13 +6,13 @@ using UnityEngine;
 
 public class TileLine : MonoBehaviour
 {
-#if UNITY_EDITOR
     public Tile TilePrefab;
     [OnValueChanged("SetLineLength")]
     [Range(1, 20)] public int LineLength;
     
     public Tile[] currentTiles { get; private set; }
 
+#if UNITY_EDITOR
     public TileLine Setup(Tile prefab, int length)
     {
         TilePrefab = prefab;

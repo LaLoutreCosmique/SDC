@@ -131,6 +131,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 189961409878650262, guid: 9b71d5cb43d98874c85a39ba67fb91d0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593484420830412034, guid: 9b71d5cb43d98874c85a39ba67fb91d0, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8750915211200805517, guid: 9b71d5cb43d98874c85a39ba67fb91d0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -846,6 +854,7 @@ GameObject:
   - component: {fileID: 2030548929}
   - component: {fileID: 2030548928}
   - component: {fileID: 2030548927}
+  - component: {fileID: 2030548930}
   m_Layer: 0
   m_Name: --- GAME MANAGER ---
   m_TagString: Untagged
@@ -882,6 +891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Player: {fileID: 10489675}
+  playerInfos: {fileID: 11400000, guid: 6bc3c70f01aae364cab5cf3ad6d24eed, type: 2}
 --- !u!4 &2030548929
 Transform:
   m_ObjectHideFlags: 0
@@ -897,6 +907,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2030548930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030548926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4b0eab74a5bd74e95fec4e2aefc276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInfos: {fileID: 11400000, guid: 6bc3c70f01aae364cab5cf3ad6d24eed, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

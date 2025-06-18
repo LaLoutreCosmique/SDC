@@ -33,17 +33,19 @@ public class Player : MonoBehaviour
 
         if (transform.position.y < -2)
         {
+            GameManager.Instance.OnPlayerFallFCT();
+
             LevelGenerator.Instance.Restart();
         }
     }
 
     void Move()
     {
-        Vector3 movement = new Vector3(moveDirection.x, 0, moveDirection.y);
+        Vector3 movement = new Vector3(moveDirection.x, 0, moveDirection.y * 1.45f);
 
-        # if UNITY_ANDROID
-            movement = -movement;
-        #endif
+        //# if UNITY_ANDROID && UNITY_EDITOR
+        //    movement = -movement;
+        //#endif
 
         m_PlayerRb.linearVelocity = Vector3.Lerp(m_PlayerRb.linearVelocity, (movement + fallForce) * m_Speed, m_Acceleration * Time.fixedDeltaTime);
     }

@@ -6,12 +6,23 @@ using Gyroscope = UnityEngine.Gyroscope;
 public class InputManager : MonoBehaviour
 {
     [SerializeField] Player m_Player;
-    
+    [SerializeField] PlayerInfos playerInfos;
+
     PlayerInputs m_PlayerInputs;
     PlayerInputs.PlayerActions m_PlayerActions;
     
     Quaternion m_CalibrationRotation;
-    
+
+    private void OnEnable()
+    {
+        GameManager.Instance.OnPlayerFall += CalibrateGyro;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.OnPlayerFall -= CalibrateGyro;
+    }
+
     void Start()
     {
         m_PlayerInputs = new PlayerInputs();
@@ -23,13 +34,23 @@ public class InputManager : MonoBehaviour
         if (SystemInfo.supportsGyroscope)
         {
             InputSystem.EnableDevice(AttitudeSensor.current);
-            CalibrateGyro();
+
+             
+            if (playerInfos.hasDiedOnce)
+            {
+                m_CalibrationRotation = new Quaternion(PlayerPrefs.GetFloat("GyroX"), PlayerPrefs.GetFloat("GyroY"), PlayerPrefs.GetFloat("GyroZ"), PlayerPrefs.GetFloat("GyroW"));
+            }
+            else
+            {
+                CalibrateGyro();
+            }
+
         }
     }
 
     private void Update()
     {
-        if (Input.gyro.enabled)
+        if (SystemInfo.supportsGyroscope && AttitudeSensor.current.enabled)
         {
             Quaternion rota = AttitudeSensor.current.attitude.ReadValue(); 
             rota = ConvertRightHandedToLeftHandedQuaternion(rota);
@@ -80,5 +101,11 @@ public class InputManager : MonoBehaviour
     public void CalibrateGyro()
     {
         m_CalibrationRotation = ConvertRightHandedToLeftHandedQuaternion(AttitudeSensor.current.attitude.ReadValue());
+
+
+        PlayerPrefs.SetFloat("GyroX", m_CalibrationRotation.x);
+        PlayerPrefs.SetFloat("GyroY", m_CalibrationRotation.y);
+        PlayerPrefs.SetFloat("GyroZ", m_CalibrationRotation.z);
+        PlayerPrefs.SetFloat("GyroW", m_CalibrationRotation.w);
     }
 }
