@@ -31,7 +31,6 @@ public class Room : MonoBehaviour
         Medium = 1,
         Hard = 2,
     }
-
     private void Awake()
     {
         foreach (var childTile in GetComponentsInChildren<Tile>())
@@ -43,7 +42,7 @@ public class Room : MonoBehaviour
         levelGenerator = lvlGenerator;
         return this;
     }
-
+#if UNITY_EDITOR
     private void SetRoomLength()
     {
         List<TileLine> tileLines = GetComponentsInChildren<TileLine>().ToList();
@@ -80,7 +79,7 @@ public class Room : MonoBehaviour
             tileLines.RemoveAt(tileLines.Count - 1);
         }
     }
-
+#endif
     public void ChangeLevel()
     {
         levelGenerator.SpawnNextRoom();
