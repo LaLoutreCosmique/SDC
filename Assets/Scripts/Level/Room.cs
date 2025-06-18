@@ -31,7 +31,6 @@ public class Room : MonoBehaviour
         Medium = 1,
         Hard = 2,
     }
-#if UNITY_EDITOR
     private void Awake()
     {
         foreach (var childTile in GetComponentsInChildren<Tile>())
@@ -97,5 +96,4 @@ public class Room : MonoBehaviour
         
         return max;
     }
-#endif
 }

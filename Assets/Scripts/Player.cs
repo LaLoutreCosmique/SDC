@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -16,7 +17,9 @@ public class Player : MonoBehaviour
 	[SerializeField] private LayerMask m_IgnoreLayersRay;
 
 
-	private void Start()
+    [SerializeField] Slider slider;
+
+    private void Start()
 	{
 		m_PlayerRb = GetComponent<Rigidbody>();
 		BallRadius = GetComponent<SphereCollider>().radius;
@@ -28,13 +31,16 @@ public class Player : MonoBehaviour
 
 		if (transform.position.y < -2)
 		{
-			LevelGenerator.Instance.Restart();
+			GameManager.Instance.OnPlayerFallFCT();
+
+
+            LevelGenerator.Instance.Restart();
 		}
 	}
 
 	void Move()
 	{
-		Vector3 movement = new Vector3(moveDirection.x, 0, moveDirection.y);
+		Vector3 movement = new Vector3(moveDirection.x, 0, moveDirection.y * 1.5f/*(1 + slider.value)*/);
 
 		m_IgnoreLayersRay = ~m_IgnoreLayersRay;
 		Ray ray = new Ray(transform.position, Vector3.down);
@@ -54,9 +60,9 @@ public class Player : MonoBehaviour
 			fallForce = Vector3.down * m_FallForce;
 		}
 
-#if UNITY_ANDROID
-			movement = -movement;
-#endif
+//#if UNITY_ANDROID
+//			movement = -movement;
+//#endif
 		m_PlayerRb.linearVelocity = Vector3.Lerp(m_PlayerRb.linearVelocity, (movement + fallForce) * m_Speed, m_Acceleration * Time.fixedDeltaTime);
 		if (m_PlayerRb.linearVelocity.magnitude <= 0.01f)
 		{
