@@ -13,10 +13,9 @@ public class InputManager : MonoBehaviour
     
     Quaternion m_CalibrationRotation;
 
-    private void OnEnable()
-    {
-        GameManager.Instance.OnPlayerFall += CalibrateGyro;
-    }
+    //private void OnEnable()
+    //{
+    //}
 
     private void OnDisable()
     {
@@ -35,7 +34,9 @@ public class InputManager : MonoBehaviour
         {
             InputSystem.EnableDevice(AttitudeSensor.current);
 
-             
+            GameManager.Instance.OnPlayerFall += CalibrateGyro;
+
+
             if (playerInfos.hasDiedOnce)
             {
                 m_CalibrationRotation = new Quaternion(PlayerPrefs.GetFloat("GyroX"), PlayerPrefs.GetFloat("GyroY"), PlayerPrefs.GetFloat("GyroZ"), PlayerPrefs.GetFloat("GyroW"));
