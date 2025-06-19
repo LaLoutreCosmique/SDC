@@ -1,5 +1,7 @@
 using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -15,10 +17,14 @@ public class GameUI : MonoBehaviour
     [SerializeField] private Button m_MusicButton;
     [SerializeField] private Button m_CalibrateButton;
     [SerializeField] private Button m_QuitButton;
+
+    [Header("SCORE")]
+    [SerializeField] private TextMeshProUGUI m_RoomCount;
     
     private bool m_IsPaused;
     private bool m_IsSfxEnabled;
     private bool m_IsMusicEnabled;
+    private int m_CurrentScore;
 
     private void Start()
     {
@@ -27,7 +33,9 @@ public class GameUI : MonoBehaviour
         m_SfxButton.onClick.AddListener(ToggleSfx);
         m_MusicButton.onClick.AddListener(ToggleMusic);
         m_CalibrateButton.onClick.AddListener(m_InputManager.CalibrateGyro);
+        m_QuitButton.onClick.AddListener(GoToMainMenu);
         
+        LevelGenerator.Instance.OnLevelCompleted.AddListener(UpdateScore);
     }
 
     void TogglePause()
@@ -52,13 +60,24 @@ public class GameUI : MonoBehaviour
         m_PauseMenu.SetActive(false);
     }
 
-    public void ToggleSfx()
+    void ToggleSfx()
     {
-        
+        Debug.Log("Y A PAS DE SON AAAAAH");
     }
 
-    public void ToggleMusic()
+    void ToggleMusic()
     {
-        
+        Debug.Log("Y A PAS DE MUSIQUE AAAAAAH");
+    }
+
+    void GoToMainMenu()
+    {
+        SceneManager.LoadScene("Scenes/MainMenu");
+    }
+
+    void UpdateScore()
+    {
+        m_CurrentScore++;
+        m_RoomCount.text = m_CurrentScore.ToString();
     }
 }

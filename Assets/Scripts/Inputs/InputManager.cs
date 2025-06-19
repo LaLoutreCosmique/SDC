@@ -101,9 +101,10 @@ public class InputManager : MonoBehaviour
 
     public void CalibrateGyro()
     {
+        if (!SystemInfo.supportsGyroscope) return;
+        
         m_CalibrationRotation = ConvertRightHandedToLeftHandedQuaternion(AttitudeSensor.current.attitude.ReadValue());
-
-
+        
         PlayerPrefs.SetFloat("GyroX", m_CalibrationRotation.x);
         PlayerPrefs.SetFloat("GyroY", m_CalibrationRotation.y);
         PlayerPrefs.SetFloat("GyroZ", m_CalibrationRotation.z);
