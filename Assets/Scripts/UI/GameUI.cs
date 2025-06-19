@@ -21,10 +21,20 @@ public class GameUI : MonoBehaviour
     [Header("SCORE")]
     [SerializeField] private TextMeshProUGUI m_RoomCount;
     
+    [Header("END POPUP")]
+    [SerializeField] private GameObject m_EndPopup;
+    [SerializeField] private Button m_RestartButton;
+    [SerializeField] private GameObject m_BestScoreRibbon;
+    [SerializeField] private TextMeshProUGUI m_CurrentScoreText;
+    [SerializeField] private TextMeshProUGUI m_BestScoreText;
+    [SerializeField] private GameObject m_NewBestScore;
+    
     private bool m_IsPaused;
     private bool m_IsSfxEnabled;
     private bool m_IsMusicEnabled;
     private int m_CurrentScore;
+    
+    const string m_BestScoreKey = "BEST_SCORE";
 
     private void Start()
     {
@@ -36,6 +46,14 @@ public class GameUI : MonoBehaviour
         m_QuitButton.onClick.AddListener(GoToMainMenu);
         
         LevelGenerator.Instance.OnLevelCompleted.AddListener(UpdateScore);
+        
+        GameManager.Instance.OnPlayerFall += DisplayEndPopup;
+        m_RestartButton.onClick.AddListener(RestartGame);
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.OnPlayerFall -= DisplayEndPopup;
     }
 
     void TogglePause()
@@ -79,5 +97,27 @@ public class GameUI : MonoBehaviour
     {
         m_CurrentScore++;
         m_RoomCount.text = m_CurrentScore.ToString();
+    }
+
+    void DisplayEndPopup()
+    {
+        m_EndPopup.SetActive(true);
+        
+        int best = PlayerPrefs.GetInt(m_BestScoreKey);
+        if (m_CurrentScore > best)
+        {
+            m_BestScoreRibbon.SetActive(true);
+            m_NewBestScore.SetActive(true);
+            best = m_CurrentScore;
+            PlayerPrefs.SetInt(m_BestScoreKey, best);
+        }
+        
+        m_CurrentScoreText.text = m_CurrentScore.ToString();
+        m_BestScoreText.text = best.ToString();
+    }
+
+    void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

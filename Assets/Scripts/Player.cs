@@ -32,9 +32,6 @@ public class Player : MonoBehaviour
 		if (transform.position.y < -2)
 		{
 			GameManager.Instance.OnPlayerFallFCT();
-
-
-            LevelGenerator.Instance.Restart();
 		}
 	}
 
