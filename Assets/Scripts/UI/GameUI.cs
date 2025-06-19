@@ -90,6 +90,7 @@ public class GameUI : MonoBehaviour
 
     void GoToMainMenu()
     {
+        GameManager.Instance.ResumeGame();
         SceneManager.LoadScene("Scenes/MainMenu");
     }
 
