@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Speed: 8
   m_Acceleration: 2
-  m_FallForce: 3
+  m_FallForce: 7
   moveDirection: {x: 0, y: 0, z: 0}
   fallForce: {x: 0, y: 0, z: 0}
   BallRadius: 0

@@ -131,10 +131,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5904108410134858119, guid: 9b71d5cb43d98874c85a39ba67fb91d0, type: 3}
-      propertyPath: slider
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8750915211200805517, guid: 9b71d5cb43d98874c85a39ba67fb91d0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
