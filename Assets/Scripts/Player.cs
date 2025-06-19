@@ -17,8 +17,6 @@ public class Player : MonoBehaviour
 	[SerializeField] private LayerMask m_IgnoreLayersRay;
 
 
-    [SerializeField] Slider slider;
-
     private void Start()
 	{
 		m_PlayerRb = GetComponent<Rigidbody>();
