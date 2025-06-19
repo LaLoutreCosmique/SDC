@@ -15,12 +15,14 @@ public class InputManager : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Instance.OnPlayerFall += CalibrateGyro;
+        if (SystemInfo.supportsGyroscope)
+            GameManager.Instance.OnPlayerFall += CalibrateGyro;
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.OnPlayerFall -= CalibrateGyro;
+        if (SystemInfo.supportsGyroscope)
+            GameManager.Instance.OnPlayerFall -= CalibrateGyro;
     }
 
     void Start()

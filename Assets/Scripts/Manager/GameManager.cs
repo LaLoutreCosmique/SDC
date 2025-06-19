@@ -20,4 +20,14 @@ public class GameManager : MonoBehaviour
         playerInfos.hasDiedOnce = true;
         OnPlayerFall?.Invoke();
     }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+    }
 }
