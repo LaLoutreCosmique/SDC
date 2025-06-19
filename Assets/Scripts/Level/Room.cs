@@ -58,12 +58,6 @@ public class Room : MonoBehaviour
 	{
 		return tiles;
 	}
-
-	public Room Setup(LevelGenerator lvlGenerator)
-    {
-        levelGenerator = lvlGenerator;
-        return this;
-    }
     
 #if UNITY_EDITOR
     private void SetRoomLength()
