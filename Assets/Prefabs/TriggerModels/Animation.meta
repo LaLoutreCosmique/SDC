@@ -1,6 +1,10 @@
 fileFormatVersion: 2
-guid: da3513cd9fc152540a13f933a0e4c011
+<<<<<<<< HEAD:Assets/Prefabs/TriggerModels/Animation.meta
+guid: ae5bb2890ccd7bb4da300f14c3c90fc3
 folderAsset: yes
+========
+guid: b9b5264ca2a7e9c458064afd1ab3a637
+>>>>>>>> ui:Assets/Scenes/MainMenu.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

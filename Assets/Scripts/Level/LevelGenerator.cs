@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -9,6 +10,8 @@ using Random = UnityEngine.Random;
 public class LevelGenerator : MonoBehaviour
 {
     public static LevelGenerator Instance;
+
+    public UnityEvent OnLevelCompleted;
     
     /// <summary>
     /// 0 for random.
@@ -93,7 +96,7 @@ public class LevelGenerator : MonoBehaviour
         Vector3 newRoomPos = spawnedRooms.Count > 0
             ? Vector3.forward * (spawnedRooms[^1].transform.position.z + spawnedRooms[^1].roomLength)
             : Vector3.forward * 5; //TODO c'est super moche mais tant pis... 5 = taille de la firstRoom 
-        Room newRoom = Instantiate(nextRoom, newRoomPos, Quaternion.identity).Setup(this);
+        Room newRoom = Instantiate(nextRoom, newRoomPos, Quaternion.identity);
         spawnedRooms.Add(newRoom);
 
         // remove previous rooms
@@ -110,10 +113,6 @@ public class LevelGenerator : MonoBehaviour
             int lvlOffset = spawnedRooms[^2].roomLength > roomWidth
                 ? spawnedRooms[^2].roomLength
                 : roomWidth;
-            
-            Debug.Log(spawnedRooms[^2].roomLength);
-            Debug.Log(roomWidth);
-            Debug.Log(lvlOffset + "ferf zefzef                a");
             
             nextPos = new Vector3(cameraOffset.x, cameraOffset.y + lvlOffset*1.2f, cameraOffset.z - lvlOffset/2*1.2f) + spawnedRooms[^2].transform.position;
         }

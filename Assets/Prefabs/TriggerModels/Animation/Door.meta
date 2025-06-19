@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: ceca186dd49c70b4d920aa1fcfdb8eaf
+<<<<<<<< HEAD:Assets/Prefabs/TriggerModels/Animation/Door.meta
+guid: 73a7af8df8e917a468c5198d14737029
+========
+guid: 072f2cb8985553949bd19cc4e714375f
+>>>>>>>> ui:Assets/Fonts.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

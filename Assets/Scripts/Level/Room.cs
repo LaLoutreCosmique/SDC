@@ -9,7 +9,6 @@ public class Room : MonoBehaviour
     [SerializeField] Difficulty difficulty;
     [OnValueChanged("SetRoomLength")]
     [Range(1, 20)] public int roomLength;
-    LevelGenerator levelGenerator;
 
 	private List<Tile> tiles = new();
 
@@ -65,6 +64,7 @@ public class Room : MonoBehaviour
         levelGenerator = lvlGenerator;
         return this;
     }
+    
 #if UNITY_EDITOR
     private void SetRoomLength()
     {
@@ -105,7 +105,8 @@ public class Room : MonoBehaviour
 #endif
     public void ChangeLevel()
     {
-        levelGenerator.SpawnNextRoom();
+        LevelGenerator.Instance.SpawnNextRoom();
+        LevelGenerator.Instance.OnLevelCompleted?.Invoke();
     }
 
     public int GetRoomWidth()
