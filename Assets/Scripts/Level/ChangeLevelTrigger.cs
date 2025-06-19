@@ -4,6 +4,8 @@ using UnityEngine;
 public class ChangeLevelTrigger : MonoBehaviour
 {
     [SerializeField] Room room;
+    [SerializeField] Collider NoReturnCollider;
+    
     bool triggered = false;
     
     private void OnTriggerEnter(Collider other)
@@ -12,6 +14,7 @@ public class ChangeLevelTrigger : MonoBehaviour
         {
             room.ChangeLevel();
             triggered = true;
+            NoReturnCollider.enabled = true;
         }
     }
 }
