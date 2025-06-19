@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 	[HideInInspector] public float BallRadius;
 	[SerializeField] private LayerMask m_IgnoreLayersRay;
 
+	[SerializeField] private Transform VFX;
+
 
     private void Start()
 	{
@@ -37,7 +39,11 @@ public class Player : MonoBehaviour
 	{
 		Vector3 movement = new Vector3(moveDirection.x, 0, moveDirection.y * 1.5f/*(1 + slider.value)*/);
 
-		m_IgnoreLayersRay = ~m_IgnoreLayersRay;
+		//print(movement);
+
+		//SetVFXTransform(movement);
+
+        m_IgnoreLayersRay = ~m_IgnoreLayersRay;
 		Ray ray = new Ray(transform.position, Vector3.down);
 		if (Physics.Raycast(ray, out RaycastHit hit, 10f, m_IgnoreLayersRay))
 		{
@@ -62,4 +68,52 @@ public class Player : MonoBehaviour
 			m_PlayerRb.angularVelocity = Vector3.zero;
 		}
 	}
+
+	void SetVFXTransform(Vector3 movement)
+    {
+        VFX.localRotation = Quaternion.Euler(m_PlayerRb.linearVelocity);
+        //      if (movement == Vector3.zero)
+        //{
+        //}
+        //else if (movement == new Vector3(0, 0, 1.5f))
+        //{
+        //	VFX.localScale = Vector3.one;
+        //          VFX.localRotation = Quaternion.Euler(0, 0, 0);
+        //      }
+        //else if (movement == new Vector3(0, 0, -1.5f))
+        //      {
+        //          VFX.localScale = Vector3.one;
+        //          VFX.localRotation = Quaternion.Euler(0, 180, 0);
+        //      }
+        //      else if (movement == new Vector3(1, 0, 0))
+        //      {
+        //          VFX.localScale = new Vector3(.5f, .5f, .5f);
+        //          VFX.localRotation = Quaternion.Euler(0, 90, 0);
+        //      }
+        //      else if (movement == new Vector3(-1, 0, 0))
+        //      {
+        //          VFX.localScale = new Vector3(.5f, .5f, .5f);
+        //          VFX.localRotation = Quaternion.Euler(0, 270, 0);
+        //      }
+        //      else if (movement == new Vector3(.71f, 0, 1.06f))
+        //      {
+        //          VFX.localRotation = Quaternion.Euler(0, 0, 45);
+        //          VFX.localScale = new Vector3(.5f, .5f, .5f);
+        //      }
+        //      else if (movement == new Vector3(-.71f, 0, 1.06f))
+        //      {
+        //          VFX.localRotation = Quaternion.Euler(0, 0, 315);
+        //          VFX.localScale = new Vector3(.5f, .5f, .5f);
+        //      }
+        //      else if (movement == new Vector3(.71f, 0, -1.06f))
+        //      {
+        //          VFX.localRotation = Quaternion.Euler(0, 0, 135);
+        //          VFX.localScale = new Vector3(.5f, .5f, .5f);
+        //      }
+        //      else if (movement == new Vector3(-.71f, 0, -1.06f))
+        //      {
+        //          VFX.localRotation = Quaternion.Euler(0, 0, 225f);
+        //          VFX.localScale = new Vector3(.5f, .5f, .5f);
+        //      }
+    }
 }
