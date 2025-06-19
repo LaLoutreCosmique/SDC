@@ -99,7 +99,6 @@ public class InputManager : MonoBehaviour
         m_Player.moveDirection = direction;
     }
 
-    // CALLED BY BUTTON (flemme)
     public void CalibrateGyro()
     {
         m_CalibrationRotation = ConvertRightHandedToLeftHandedQuaternion(AttitudeSensor.current.attitude.ReadValue());
