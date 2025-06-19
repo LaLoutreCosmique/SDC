@@ -1568,7 +1568,7 @@ MonoBehaviour:
   seed: 0
   cameraTest: {fileID: 1553252448}
   spawnedRooms: []
-  cameraOffset: {x: 0, y: 8, z: -2}
+  cameraOffset: {x: 0, y: 10, z: -2}
 --- !u!114 &2030548928
 MonoBehaviour:
   m_ObjectHideFlags: 0
