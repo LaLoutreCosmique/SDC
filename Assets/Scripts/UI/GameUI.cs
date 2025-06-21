@@ -13,9 +13,11 @@ public class GameUI : MonoBehaviour
     [SerializeField] private GameObject m_PauseMenu;
     [SerializeField] private Button m_PauseButton;
     [SerializeField] private Button m_ResumeButton;
+    [SerializeField] private Button m_PauseRestartButton;
     [SerializeField] private Button m_SfxButton;
     [SerializeField] private Button m_MusicButton;
     [SerializeField] private Button m_CalibrateButton;
+    [SerializeField] private Button m_DayModeButton;
     [SerializeField] private Button m_QuitButton;
 
     [Header("SCORE")]
@@ -33,22 +35,33 @@ public class GameUI : MonoBehaviour
     private bool m_IsSfxEnabled;
     private bool m_IsMusicEnabled;
     private int m_CurrentScore;
+    private bool m_IsDay;
     
     const string m_BestScoreKey = "BEST_SCORE";
+    const string m_DayModeKey = "DAY_MODE";
 
     private void Start()
     {
         m_PauseButton.onClick.AddListener(TogglePause);
         m_ResumeButton.onClick.AddListener(ResumeGame);
+        m_PauseRestartButton.onClick.AddListener(() =>
+        {
+            GameManager.Instance.OnPlayerFallFCT();
+            ResumeGame();
+        });
         m_SfxButton.onClick.AddListener(ToggleSfx);
         m_MusicButton.onClick.AddListener(ToggleMusic);
         m_CalibrateButton.onClick.AddListener(m_InputManager.CalibrateGyro);
+        m_DayModeButton.onClick.AddListener(ToggleDayMode);
         m_QuitButton.onClick.AddListener(GoToMainMenu);
+        m_RestartButton.onClick.AddListener(RestartGame);
+        
+        if (PlayerPrefs.GetInt(m_DayModeKey) == 1)
+            ToggleDayMode();
         
         LevelGenerator.Instance.OnLevelCompleted.AddListener(UpdateScore);
         
         GameManager.Instance.OnPlayerFall += DisplayEndPopup;
-        m_RestartButton.onClick.AddListener(RestartGame);
     }
 
     private void OnDisable()
@@ -120,5 +133,23 @@ public class GameUI : MonoBehaviour
     void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void ToggleDayMode()
+    {
+        if (m_IsDay)
+        {
+            GameManager.Instance.SetNight();
+            m_DayModeButton.GetComponentInChildren<TextMeshProUGUI>().text = "Enable Day Mode";
+            PlayerPrefs.SetInt(m_DayModeKey, 0);
+        }
+        else
+        {
+            GameManager.Instance.SetDay();
+            m_DayModeButton.GetComponentInChildren<TextMeshProUGUI>().text = "Disable Day Mode";
+            PlayerPrefs.SetInt(m_DayModeKey, 1);
+        }
+        
+        m_IsDay = !m_IsDay;
     }
 }
