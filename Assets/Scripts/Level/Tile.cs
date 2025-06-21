@@ -26,6 +26,8 @@ public class Tile : MonoBehaviour
         Wall = 1,
         Pillar = 2,
         Hole = 3,
+        StairsDL = 4, // DL = down left
+        StairsUR = 5, // UR = up right
     }
 
 

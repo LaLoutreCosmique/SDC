@@ -39,26 +39,11 @@ public class Player : MonoBehaviour
 	{
 		Vector3 movement = new Vector3(moveDirection.x, 0, moveDirection.y * 1.5f/*(1 + slider.value)*/);
 
-		//print(movement);
-
-		//SetVFXTransform(movement);
-
-        m_IgnoreLayersRay = ~m_IgnoreLayersRay;
+		fallForce = Vector3.down * m_FallForce;
 		Ray ray = new Ray(transform.position, Vector3.down);
-		if (Physics.Raycast(ray, out RaycastHit hit, 10f, m_IgnoreLayersRay))
+		if (Physics.Raycast(ray, out RaycastHit hit, BallRadius + 0.3f, ~m_IgnoreLayersRay))
 		{
-			if (hit.distance > BallRadius)
-			{
-				fallForce = Vector3.down * m_FallForce;
-			}
-			else
-			{
-				fallForce = Vector3.zero;
-			}
-		}
-		else
-		{
-			fallForce = Vector3.down * m_FallForce;
+			fallForce = Vector3.zero;
 		}
 
 		m_PlayerRb.linearVelocity = Vector3.Lerp(m_PlayerRb.linearVelocity, (movement + fallForce) * m_Speed, m_Acceleration * Time.fixedDeltaTime);
