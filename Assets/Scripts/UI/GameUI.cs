@@ -62,12 +62,14 @@ public class GameUI : MonoBehaviour
         LevelGenerator.Instance.OnLevelCompleted.AddListener(UpdateScore);
         
         GameManager.Instance.OnPlayerFall += DisplayEndPopup;
-    }
+        GameManager.Instance.OnPlayerDie += DisplayEndPopup;
+	}
 
     private void OnDisable()
     {
         GameManager.Instance.OnPlayerFall -= DisplayEndPopup;
-    }
+        GameManager.Instance.OnPlayerDie -= DisplayEndPopup;
+	}
 
     void TogglePause()
     {
