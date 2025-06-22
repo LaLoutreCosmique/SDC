@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 263452780079032984}
   - component: {fileID: 4309858556931360041}
   - component: {fileID: 7083747402161297280}
+  - component: {fileID: 519015479299154840}
   m_Layer: 0
   m_Name: Diamond_02
   m_TagString: Untagged
@@ -86,3 +87,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &519015479299154840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819230392623049614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61ecaecdb6f90294eab1768e643d0592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  propType: 6

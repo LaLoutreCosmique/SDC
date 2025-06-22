@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3421298922225985893}
   - component: {fileID: 7206111483404371226}
   - component: {fileID: 1478621813300535936}
+  - component: {fileID: -2890817679593526882}
   m_Layer: 0
   m_Name: Wineglass_01
   m_TagString: Untagged
@@ -86,3 +87,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-2890817679593526882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096741367661706754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61ecaecdb6f90294eab1768e643d0592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  propType: 5

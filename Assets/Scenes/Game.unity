@@ -2225,6 +2225,11 @@ MonoBehaviour:
   cameraTest: {fileID: 1553252448}
   spawnedRooms: []
   cameraOffset: {x: 0, y: 8, z: -2}
+  propsSpawnChances:
+    minChance: 10
+    maxChance1: 50
+    maxChance2: 30
+    maxChance3: 10
 --- !u!114 &2030548928
 MonoBehaviour:
   m_ObjectHideFlags: 0
