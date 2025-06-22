@@ -106,7 +106,7 @@ public class GameUI : MonoBehaviour
         m_PauseMenu.SetActive(true);
         foreach (var button in m_PauseButtons)
         {
-            button.anchoredPosition = new Vector2(m_ButtonsXPos + 30f, button.anchoredPosition.y);
+            button.anchoredPosition = new Vector2(m_ButtonsXPos + 300f, button.anchoredPosition.y);
         }
         StartCoroutine(ShowButtonsRoutine());
     }
@@ -115,7 +115,7 @@ public class GameUI : MonoBehaviour
     {
         foreach (var button in m_PauseButtons)
         {
-            button.DOAnchorPosX(0f, .3f).SetEase(Ease.OutBounce).SetUpdate(true);
+            button.DOAnchorPosX(0f, .3f).SetUpdate(true);
             yield return new WaitForSecondsRealtime(0.03f);
         }
     }
