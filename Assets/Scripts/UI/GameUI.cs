@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class GameUI : MonoBehaviour
 {
     [SerializeField] InputManager m_InputManager;
+    [SerializeField] LoadingScreen m_LoadingScreen;
     
     [Header("PAUSE")]
     [SerializeField] private GameObject m_PauseMenu;
@@ -132,7 +133,7 @@ public class GameUI : MonoBehaviour
 
     void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        m_LoadingScreen.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void ToggleDayMode()
