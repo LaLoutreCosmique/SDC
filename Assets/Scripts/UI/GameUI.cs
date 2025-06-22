@@ -1,4 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,6 +11,7 @@ using UnityEngine.UI;
 public class GameUI : MonoBehaviour
 {
     [SerializeField] InputManager m_InputManager;
+    [SerializeField] LoadingScreen m_LoadingScreen;
     
     [Header("PAUSE")]
     [SerializeField] private GameObject m_PauseMenu;
@@ -36,6 +40,8 @@ public class GameUI : MonoBehaviour
     private bool m_IsMusicEnabled;
     private int m_CurrentScore;
     private bool m_IsDay;
+    private float m_ButtonsXPos;
+    List<RectTransform> m_PauseButtons; 
     
     const string m_BestScoreKey = "BEST_SCORE";
     const string m_DayModeKey = "DAY_MODE";
@@ -56,6 +62,19 @@ public class GameUI : MonoBehaviour
         m_QuitButton.onClick.AddListener(GoToMainMenu);
         m_RestartButton.onClick.AddListener(RestartGame);
         
+        m_PauseButtons = new List<RectTransform>
+        {
+            m_ResumeButton.GetComponent<RectTransform>(),
+            m_PauseRestartButton.GetComponent<RectTransform>(),
+            m_SfxButton.GetComponent<RectTransform>(),
+            m_MusicButton.GetComponent<RectTransform>(),
+            m_CalibrateButton.GetComponent<RectTransform>(),
+            m_DayModeButton.GetComponent<RectTransform>(),
+            m_QuitButton.GetComponent<RectTransform>()
+        };
+        
+        m_ButtonsXPos = m_ResumeButton.GetComponent<RectTransform>().anchoredPosition.x;
+        
         if (PlayerPrefs.GetInt(m_DayModeKey) == 1)
             ToggleDayMode();
         
@@ -75,6 +94,9 @@ public class GameUI : MonoBehaviour
             ResumeGame();
         else
             PauseGame();
+        
+        RectTransform pauseBtnRect = m_PauseButton.GetComponent<RectTransform>();
+        pauseBtnRect.DOJumpAnchorPos(pauseBtnRect.anchoredPosition, 5f, 1, 0.5f).SetEase(Ease.OutBounce).SetUpdate(true);
     }
 
     void PauseGame()
@@ -82,6 +104,20 @@ public class GameUI : MonoBehaviour
         m_IsPaused = true;
         GameManager.Instance.PauseGame();
         m_PauseMenu.SetActive(true);
+        foreach (var button in m_PauseButtons)
+        {
+            button.anchoredPosition = new Vector2(m_ButtonsXPos + 30f, button.anchoredPosition.y);
+        }
+        StartCoroutine(ShowButtonsRoutine());
+    }
+
+    IEnumerator ShowButtonsRoutine()
+    {
+        foreach (var button in m_PauseButtons)
+        {
+            button.DOAnchorPosX(0f, .3f).SetEase(Ease.OutBounce).SetUpdate(true);
+            yield return new WaitForSecondsRealtime(0.03f);
+        }
     }
 
     void ResumeGame()
@@ -132,7 +168,7 @@ public class GameUI : MonoBehaviour
 
     void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        m_LoadingScreen.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void ToggleDayMode()
