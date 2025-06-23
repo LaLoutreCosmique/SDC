@@ -12,8 +12,6 @@ public class SoundsManager : MonoBehaviour
     public AudioSource audioSourceRoll;
     public AudioSource audioSourceWind;
 
-    public AudioClip[] impacts;
-
 
     private void Awake()
     {

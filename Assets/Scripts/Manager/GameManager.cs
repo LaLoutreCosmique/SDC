@@ -36,18 +36,27 @@ public class GameManager : MonoBehaviour
         Destroy(audioObj, jingleStart.length);
     }
 
+    bool hasend;
+
     public void OnPlayerFallFCT()
     {
         playerInfos.hasDiedOnce = true;
         OnPlayerFall?.Invoke();
 
-        GameObject audioObj = new GameObject("2D Audio");
-        AudioSource audioSource = audioObj.AddComponent<AudioSource>();
 
-        audioSource.clip = jingleEnd;
-        audioSource.Play();
+        if (!hasend)
+        {
+            hasend = true;
 
-        Destroy(audioObj, jingleEnd.length);
+
+            GameObject audioObj = new GameObject("2D Audio");
+            AudioSource audioSource = audioObj.AddComponent<AudioSource>();
+
+            audioSource.clip = jingleEnd;
+            audioSource.Play();
+
+            Destroy(audioObj, jingleEnd.length);
+        }
         
     }
 
