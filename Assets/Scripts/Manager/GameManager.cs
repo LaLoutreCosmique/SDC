@@ -27,9 +27,11 @@ public class GameManager : MonoBehaviour
 			DontDestroyOnLoad(gameObject);
 		}
 		else
-		{
-            Destroy(gameObject);
-		}
+        {
+            Destroy(Instance.gameObject);
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
 	}
 
 	private void Start()
