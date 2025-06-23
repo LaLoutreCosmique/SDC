@@ -136,21 +136,28 @@ public class Player : MonoBehaviour
 
 		lastImpactTime = currentTime;
 
-		if (wallImpactClips.Length > 0)
-		{
-			AudioClip clip = wallImpactClips[UnityEngine.Random.Range(0, wallImpactClips.Length)];
-			AudioSource.PlayClipAtPoint(clip, collision.contacts[0].point, impactVolume);
+		//if ()
+		//{
 
-			Handheld.Vibrate();
-		}
+		//	Handheld.Vibrate();
+		//}
 
 		// VFX
-		if (impactVFXPrefab != null)
+		if (impactVFXPrefab != null && wallImpactClips.Length > 0)
 		{
 			ContactPoint contact = collision.contacts[0];
 			Quaternion rotation = Quaternion.LookRotation(contact.normal);
-			Instantiate(impactVFXPrefab, contact.point, rotation);
-		}
+			GameObject go = Instantiate(impactVFXPrefab, contact.point, rotation);
+
+
+            AudioClip _clip = wallImpactClips[UnityEngine.Random.Range(0, wallImpactClips.Length)];
+			AudioSource _source = go.GetComponent<AudioSource>();
+            _source.clip = _clip;
+            _source.Play();
+
+			Destroy(go, _clip.length);
+
+        }
 	}
 
 	public void Die()
