@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public enum DoorSpecificType
 {
@@ -93,7 +94,13 @@ public class TTDoor : TriggerTile
 		isOpen = true;
 		doorCollider.enabled = false;
 
-        AudioSource.PlayClipAtPoint(clipDoorOn, transform.position, .25f);
+        GameObject audioObj = new GameObject("Door Audio");
+        audioObj.transform.position = transform.position;
+        AudioSource audioSource = audioObj.AddComponent<AudioSource>();
+
+        audioSource.outputAudioMixerGroup = SoundsManager.Instance.sfxAudioMixer;
+        audioSource.volume = .25f;
+        audioSource.PlayOneShot(clipDoorOn);
     }
 
 	private void CloseDoor()
@@ -103,7 +110,13 @@ public class TTDoor : TriggerTile
 		doorCollider.enabled = true;
 
 
-        AudioSource.PlayClipAtPoint(clipDoorOff, transform.position, .25f);
+        GameObject audioObj = new GameObject("Door Audio");
+        audioObj.transform.position = transform.position;
+        AudioSource audioSource = audioObj.AddComponent<AudioSource>();
+
+        audioSource.outputAudioMixerGroup = SoundsManager.Instance.sfxAudioMixer;
+        audioSource.volume = .25f;
+        audioSource.PlayOneShot(clipDoorOff);
     }
 
 	public bool CheckAllConditions()

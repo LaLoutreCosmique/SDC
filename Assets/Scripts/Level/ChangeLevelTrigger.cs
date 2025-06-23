@@ -27,9 +27,9 @@ public class ChangeLevelTrigger : MonoBehaviour
             GameObject audioObj = new GameObject("2D Audio");
             AudioSource audioSource = audioObj.AddComponent<AudioSource>();
 
-            audioSource.clip = levelCompleteSound;
+            audioSource.outputAudioMixerGroup = SoundsManager.Instance.sfxAudioMixer;
             audioSource.volume = .35f;
-            audioSource.Play();
+            audioSource.PlayOneShot(levelCompleteSound);
 
             Destroy(audioObj, levelCompleteSound.length);
 

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -58,20 +57,23 @@ public class Player : MonoBehaviour
 
 		rollingAudio.volume = 0f;
 		windAudio.volume = 0f;
-
-		GameManager.Instance.OnPlayerDie += Die;
+		if (GameManager.Instance != null)
+		{
+			GameManager.Instance.OnPlayerDie += Die;
+		}
 	}
 
 	private void OnDestroy()
 	{
-		GameManager.Instance.OnPlayerDie -= Die;
+		if (GameManager.Instance != null)
+			GameManager.Instance.OnPlayerDie -= Die;
 	}
 
 	private void FixedUpdate()
 	{
 		Move();
 
-		if (transform.position.y < -2)
+		if (transform.position.y < -2 && GameManager.Instance != null)
 		{
 			GameManager.Instance.OnPlayerFallFCT();
 		}
@@ -135,19 +137,28 @@ public class Player : MonoBehaviour
 
 		lastImpactTime = currentTime;
 
-		if (wallImpactClips.Length > 0)
-		{
-			AudioClip clip = wallImpactClips[UnityEngine.Random.Range(0, wallImpactClips.Length)];
-			AudioSource.PlayClipAtPoint(clip, collision.contacts[0].point, impactVolume);
-		}
+		//if ()
+		//{
+
+		//	Handheld.Vibrate();
+		//}
 
 		// VFX
-		//if (impactVFXPrefab != null)
-		//{
-		//    ContactPoint contact = collision.contacts[0];
-		//    Quaternion rotation = Quaternion.LookRotation(contact.normal);
-		//    Instantiate(impactVFXPrefab, contact.point, rotation);
-		//}
+		if (impactVFXPrefab != null && wallImpactClips.Length > 0)
+		{
+			ContactPoint contact = collision.contacts[0];
+			Quaternion rotation = Quaternion.LookRotation(contact.normal);
+			GameObject go = Instantiate(impactVFXPrefab, contact.point, rotation);
+
+
+            AudioClip _clip = wallImpactClips[UnityEngine.Random.Range(0, wallImpactClips.Length)];
+			AudioSource _source = go.GetComponent<AudioSource>();
+            _source.clip = _clip;
+            _source.Play();
+
+			Destroy(go, _clip.length);
+
+        }
 	}
 
 	public void Die()

@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -21,19 +19,28 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioClip jingleStart;
     [SerializeField] AudioClip jingleEnd;
 
-    void Awake()
-    {
-        Instance = this;
-    }
+	private void Awake()
+	{
+		if (Instance == null)
+		{
+			Instance = this;
+			DontDestroyOnLoad(gameObject);
+		}
+		else
+		{
+			this.enabled = false;
+		}
+	}
 
-    private void Start()
+	private void Start()
     {
         GameObject audioObj = new GameObject("2D Audio");
         AudioSource audioSource = audioObj.AddComponent<AudioSource>();
 
-        audioSource.clip = jingleStart;
+
+        audioSource.outputAudioMixerGroup = SoundsManager.Instance.sfxAudioMixer;
         audioSource.volume = .35f;
-        audioSource.Play();
+        audioSource.PlayOneShot(jingleStart);
 
         Destroy(audioObj, jingleStart.length);
     }
@@ -54,9 +61,9 @@ public class GameManager : MonoBehaviour
             GameObject audioObj = new GameObject("2D Audio");
             AudioSource audioSource = audioObj.AddComponent<AudioSource>();
 
-            audioSource.clip = jingleEnd;
+            audioSource.outputAudioMixerGroup = SoundsManager.Instance.sfxAudioMixer;
             audioSource.volume = .35f;
-            audioSource.Play();
+            audioSource.PlayOneShot(jingleEnd);
 
             Destroy(audioObj, jingleEnd.length);
         }
@@ -82,12 +89,16 @@ public class GameManager : MonoBehaviour
     public void SetDay()
     {
         RenderSettings.skybox = m_DaySkybox;
-        m_DayLight.SetActive(true);
+        if (m_DayLight == null)
+            m_DayLight = GameObject.FindWithTag("DayLight");
+		m_DayLight.SetActive(true);
     }
 
     public void SetNight()
     {
         RenderSettings.skybox = m_NightSkybox;
-        m_DayLight.SetActive(false);
+		if (m_DayLight == null)
+			m_DayLight = GameObject.FindWithTag("DayLight");
+		m_DayLight.SetActive(false);
     }
 }

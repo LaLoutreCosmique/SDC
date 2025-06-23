@@ -40,13 +40,25 @@ public class TTLever : TriggerTile
 
         if (activated)
         {
-            AudioSource.PlayClipAtPoint(clipLeverOn, transform.position, .17f);
-            Handheld.Vibrate();
+            GameObject audioObj = new GameObject("Lever Audio");
+            audioObj.transform.position = transform.position;
+            AudioSource audioSource = audioObj.AddComponent<AudioSource>();
+
+            audioSource.outputAudioMixerGroup = SoundsManager.Instance.sfxAudioMixer;
+            audioSource.volume = .17f;
+            audioSource.PlayOneShot(clipLeverOn);
+            //Handheld.Vibrate();
         }
         else
         {
-            AudioSource.PlayClipAtPoint(clipLeverOff, transform.position, .17f);
-            Handheld.Vibrate();
+            GameObject audioObj = new GameObject("Lever Audio");
+            audioObj.transform.position = transform.position;
+            AudioSource audioSource = audioObj.AddComponent<AudioSource>();
+
+            audioSource.outputAudioMixerGroup = SoundsManager.Instance.sfxAudioMixer;
+            audioSource.volume = .17f;
+            audioSource.PlayOneShot(clipLeverOff);
+            //Handheld.Vibrate();
         }
 	}
 

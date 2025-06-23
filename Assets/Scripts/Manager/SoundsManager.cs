@@ -1,6 +1,5 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundsManager : MonoBehaviour
 {
@@ -12,11 +11,21 @@ public class SoundsManager : MonoBehaviour
     public AudioSource audioSourceRoll;
     public AudioSource audioSourceWind;
 
+    public AudioMixerGroup musicAudioMixer;
+    public AudioMixerGroup sfxAudioMixer;
 
     private void Awake()
     {
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else {
+			this.enabled = false;
+			Debug.LogError("Multiple SoundManager instances detected. Destroying duplicate instance.");
+		}
     }
 
 

@@ -4,7 +4,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 [System.Serializable]
@@ -35,24 +34,43 @@ public class LevelGenerator : MonoBehaviour
 	System.Random bagsRnd;
 	int currentRoomId = -1;
 	private Vector3 nextPos;
+	private Vector3 initCameraPos;
 	[SerializeField] Vector3 cameraOffset;
 
 	private List<GameObject> props = new();
 	[SerializeField] private SpawnChances propsSpawnChances;
 	private float c1, c2, c3;
 
+	[SerializeField] private GameObject ParticuleRoom;
+	[SerializeField] private float particuleheight = -1.5f;
+
 	const int bagsAmount = 2;
 
 	private void Awake()
 	{
+
 		if (Instance == null)
+		{
 			Instance = this;
+			DontDestroyOnLoad(gameObject);
+		}
+		else
+		{
+			this.enabled = false;
+		}
 	}
 
 	void Start()
 	{
+		// Reset all variables in case of reloading the scene
+		currentRoomId = -1;
+		spawnedRooms.Clear();
+		currentBags.Clear();
+		staticBags.Clear();
+		seed = 0;
+
 		loadedRooms = Resources.LoadAll<Room>("Rooms/PlayableRooms").ToList();
-		nextPos = cameraTest.position;
+		initCameraPos = nextPos = cameraTest.position;
 
 		props = Resources.LoadAll<GameObject>("Props").ToList();
 
@@ -65,7 +83,13 @@ public class LevelGenerator : MonoBehaviour
 		if (Keyboard.current.kKey.wasPressedThisFrame)
 			SpawnNextRoom();
 
-		
+		if (cameraTest == null)
+		{
+			cameraTest = Camera.main.transform;
+			nextPos = initCameraPos;
+			cameraTest.position = nextPos;
+			Start();
+		}
 		cameraTest.transform.position = Vector3.Lerp(cameraTest.transform.position, nextPos, Time.deltaTime * 10);
 	}
 
@@ -130,6 +154,15 @@ public class LevelGenerator : MonoBehaviour
 				: roomWidth;
 
 			nextPos = new Vector3(cameraOffset.x, cameraOffset.y + lvlOffset * 1.2f, cameraOffset.z - lvlOffset / 2f) + spawnedRooms[^2].transform.position;
+		}
+
+		// spawn Particule
+		if (ParticuleRoom != null)
+		{
+			GameObject particule = Instantiate(ParticuleRoom, newRoom.transform.position, Quaternion.identity);
+			particule.transform.SetParent(newRoom.transform);
+			particule.transform.localPosition = new Vector3(0, particuleheight, 0);
+			particule.GetComponent<ParticleSystem>().Play();
 		}
 
 		// spawn props
