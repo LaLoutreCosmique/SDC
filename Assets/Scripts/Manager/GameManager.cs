@@ -21,12 +21,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioClip jingleStart;
     [SerializeField] AudioClip jingleEnd;
 
-    void Awake()
-    {
-        Instance = this;
-    }
+	private void Awake()
+	{
+		if (Instance == null)
+		{
+			Instance = this;
+			DontDestroyOnLoad(gameObject);
+		}
+		else
+		{
+			Destroy(gameObject);
+            Debug.LogWarning("Multiple GameManager instances detected. Destroying duplicate instance.");
+		}
+	}
 
-    private void Start()
+	private void Start()
     {
         GameObject audioObj = new GameObject("2D Audio");
         AudioSource audioSource = audioObj.AddComponent<AudioSource>();

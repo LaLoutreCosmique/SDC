@@ -9392,8 +9392,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2030548929}
   - component: {fileID: 2030548928}
-  - component: {fileID: 2030548927}
-  - component: {fileID: 2030548930}
   m_Layer: 0
   m_Name: --- GAME MANAGER ---
   m_TagString: Untagged
@@ -9401,30 +9399,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2030548927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2030548926}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d7fa474d67629743aa2e542e9864a05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnLevelCompleted:
-    m_PersistentCalls:
-      m_Calls: []
-  seed: 0
-  cameraTest: {fileID: 1553252448}
-  spawnedRooms: []
-  cameraOffset: {x: 0, y: 8, z: -2}
-  propsSpawnChances:
-    minChance: 0
-    maxChance1: 0
-    maxChance2: 0
-    maxChance3: 0
 --- !u!114 &2030548928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9455,24 +9429,6 @@ Transform:
   - {fileID: 573308066}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2030548930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2030548926}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e4b0eab74a5bd74e95fec4e2aefc276, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerInfos: {fileID: 11400000, guid: 6bc3c70f01aae364cab5cf3ad6d24eed, type: 2}
-  m_NightSkybox: {fileID: 0}
-  m_DaySkybox: {fileID: 0}
-  m_DayLight: {fileID: 0}
-  jingleStart: {fileID: 0}
-  jingleEnd: {fileID: 0}
 --- !u!1 &2031190779
 GameObject:
   m_ObjectHideFlags: 0

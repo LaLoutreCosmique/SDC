@@ -58,20 +58,21 @@ public class Player : MonoBehaviour
 
 		rollingAudio.volume = 0f;
 		windAudio.volume = 0f;
-
-		GameManager.Instance.OnPlayerDie += Die;
+		if (GameManager.Instance != null)
+			GameManager.Instance.OnPlayerDie += Die;
 	}
 
 	private void OnDestroy()
 	{
-		GameManager.Instance.OnPlayerDie -= Die;
+		if (GameManager.Instance != null)
+			GameManager.Instance.OnPlayerDie -= Die;
 	}
 
 	private void FixedUpdate()
 	{
 		Move();
 
-		if (transform.position.y < -2)
+		if (transform.position.y < -2 && GameManager.Instance != null)
 		{
 			GameManager.Instance.OnPlayerFallFCT();
 		}

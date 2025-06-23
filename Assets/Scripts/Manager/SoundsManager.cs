@@ -22,7 +22,8 @@ public class SoundsManager : MonoBehaviour
         }
         else { 
             Destroy(gameObject);
-        }
+			Debug.LogWarning("Multiple SoundManager instances detected. Destroying duplicate instance.");
+		}
     }
 
 
