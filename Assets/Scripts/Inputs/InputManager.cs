@@ -55,7 +55,7 @@ public class InputManager : MonoBehaviour
 
 	private void Update()
 	{
-		if (SystemInfo.supportsGyroscope && AttitudeSensor.current.enabled)
+		if (SystemInfo.supportsGyroscope && AttitudeSensor.current != null && AttitudeSensor.current.enabled)
 		{
 			Quaternion rota = AttitudeSensor.current.attitude.ReadValue(); 
 			rota = ConvertRightHandedToLeftHandedQuaternion(rota);
