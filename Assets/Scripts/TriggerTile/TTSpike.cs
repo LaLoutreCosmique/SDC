@@ -1,8 +1,6 @@
 using NaughtyAttributes;
 using System;
 using UnityEngine;
-using static UnityEngine.Tilemaps.Tilemap;
-
 [Serializable]
 public enum Orientation : int
 {
