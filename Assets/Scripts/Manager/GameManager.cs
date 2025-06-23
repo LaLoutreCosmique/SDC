@@ -9,8 +9,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public event Action OnPlayerFall;
+    public event Action OnPlayerDie;
 
-    [SerializeField] PlayerInfos playerInfos;
+	[SerializeField] PlayerInfos playerInfos;
     
     [Header("DAY MODE")]
     [SerializeField] private Material m_NightSkybox;
@@ -62,7 +63,13 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void PauseGame()
+    public void OnPlayerDieFCT()
+    {
+        playerInfos.hasDiedOnce = true;
+        OnPlayerDie?.Invoke();
+	}
+
+	public void PauseGame()
     {
         Time.timeScale = 0;
     }
