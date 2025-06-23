@@ -22,7 +22,7 @@ public class TTSpike : TriggerTile
 	{
 		Vector3 nextPos = Vector3.zero;
 		Quaternion nextQuat = Quaternion.identity;
-		if (orientation.Equals(Orientation.Ground))
+		if (orientation == Orientation.Ground)
 		{
 			nextPos = Vector3.up;
 		}
