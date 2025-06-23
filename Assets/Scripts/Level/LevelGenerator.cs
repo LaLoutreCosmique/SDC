@@ -114,7 +114,7 @@ public class LevelGenerator : MonoBehaviour
                 ? spawnedRooms[^2].roomLength
                 : roomWidth;
             
-            nextPos = new Vector3(cameraOffset.x, cameraOffset.y + lvlOffset*1.3f, cameraOffset.z - lvlOffset/2*1.2f) + spawnedRooms[^2].transform.position;
+            nextPos = new Vector3(cameraOffset.x, cameraOffset.y + lvlOffset*1.2f, cameraOffset.z - lvlOffset/2f) + spawnedRooms[^2].transform.position;
         }
     }
 }
