@@ -27,6 +27,10 @@ public class Player : MonoBehaviour
 		GameManager.Instance.OnPlayerDie += Die;
 	}
 
+	private void OnDestroy()
+	{
+		GameManager.Instance.OnPlayerDie -= Die;
+	}
 	private void FixedUpdate()
 	{
 		Move();
