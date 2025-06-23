@@ -7,7 +7,7 @@ using NaughtyAttributes;
 public class Tile : MonoBehaviour
 {
     [Header("Tile:")]
-    [SerializeField] Model model;
+    public Model model;
     [Dropdown("TriggerTypes")] [OnValueChanged("OnTriggerTypeChanged")] public string triggerType;
     [SerializeField] bool canDecay;
     [SerializeField] bool isFlipped;

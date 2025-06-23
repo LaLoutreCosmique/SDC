@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8914188463954035704}
   - component: {fileID: 978581069561013320}
   - component: {fileID: 1877333874971114756}
+  - component: {fileID: 8642052662353569048}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -60,7 +61,30 @@ MonoBehaviour:
   m_IgnoreLayersRay:
     serializedVersion: 2
     m_Bits: 3072
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  groundRaycastSize: 0.5
   VFX: {fileID: 0}
+  speedThreshold: 0.1
+  maxVolume: 1
+  baseVolumeMultiplier: 0.28
+  volumeSmoothing: 5
+  groundCheckDistance: 0.6
+  windMinVolume: 0.1
+  windBaseVolume: 0.2
+  windMaxVolume: 0.35
+  wallImpactClips:
+  - {fileID: 8300000, guid: bc636054b535a93459f18e8f64e0db64, type: 3}
+  - {fileID: 8300000, guid: c6b5579507c53f4479baa07defc68c85, type: 3}
+  - {fileID: 8300000, guid: 054f401638d3ea44ba439445d80ac776, type: 3}
+  - {fileID: 8300000, guid: 3d37c12a57cbb7c488d479911559fddb, type: 3}
+  impactVFXPrefab: {fileID: 0}
+  impactVolume: 0.15
+  wallTag: Wall
+  pillarTag: Pillar
+  impactSpeedThreshold: 0.2
+  impactCooldown: 0.7
 --- !u!33 &8428418861735226729
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -162,6 +186,14 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!81 &8642052662353569048
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189961409878650262}
+  m_Enabled: 1
 --- !u!1 &285891657761726433
 GameObject:
   m_ObjectHideFlags: 0

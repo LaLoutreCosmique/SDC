@@ -4563,6 +4563,10 @@ MonoBehaviour:
   modelPrefab: {fileID: 5624148303022369555, guid: 74f43ab198174c3418c87760c2e52c32, type: 3}
   model: {fileID: 4227298064938540473}
   activated: 0
+  clipLeverOn: {fileID: 0}
+  clipLeverOff: {fileID: 0}
+  clipDoorOn: {fileID: 0}
+  clipDoorOff: {fileID: 0}
 --- !u!4 &5779087331351110969 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5486838051108350512, guid: 84370dff02ed9ed418c7deb384051be8, type: 3}
@@ -4847,6 +4851,10 @@ MonoBehaviour:
   modelPrefab: {fileID: 5624148303022369555, guid: 74f43ab198174c3418c87760c2e52c32, type: 3}
   model: {fileID: 6074036148299682566}
   activated: 0
+  clipLeverOn: {fileID: 0}
+  clipLeverOff: {fileID: 0}
+  clipDoorOn: {fileID: 0}
+  clipDoorOff: {fileID: 0}
 --- !u!4 &5953315866568067336 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5486838051108350512, guid: 84370dff02ed9ed418c7deb384051be8, type: 3}
@@ -5758,6 +5766,8 @@ MonoBehaviour:
   model: {fileID: 6875293133232143883}
   isOpen: 1
   conditions: []
+  clipDoorOn: {fileID: 0}
+  clipDoorOff: {fileID: 0}
 --- !u!1001 &3158459000823008801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6482,6 +6492,8 @@ MonoBehaviour:
   model: {fileID: 7334770180424423283}
   isOpen: 0
   conditions: []
+  clipDoorOn: {fileID: 0}
+  clipDoorOff: {fileID: 0}
 --- !u!4 &8472888347449494072 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5486838051108350512, guid: 84370dff02ed9ed418c7deb384051be8, type: 3}
@@ -8898,6 +8910,8 @@ MonoBehaviour:
   model: {fileID: 7781703259758179217}
   isOpen: 0
   conditions: []
+  clipDoorOn: {fileID: 0}
+  clipDoorOff: {fileID: 0}
 --- !u!1001 &7752877104119289332
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9127,6 +9141,10 @@ MonoBehaviour:
   modelPrefab: {fileID: 5624148303022369555, guid: 74f43ab198174c3418c87760c2e52c32, type: 3}
   model: {fileID: 4641181787912950962}
   activated: 0
+  clipLeverOn: {fileID: 0}
+  clipLeverOff: {fileID: 0}
+  clipDoorOn: {fileID: 0}
+  clipDoorOff: {fileID: 0}
 --- !u!4 &4356940349085048433 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5486838051108350512, guid: 84370dff02ed9ed418c7deb384051be8, type: 3}
@@ -10100,6 +10118,8 @@ MonoBehaviour:
   model: {fileID: 5630188861263182106}
   isOpen: 0
   conditions: []
+  clipDoorOn: {fileID: 0}
+  clipDoorOff: {fileID: 0}
 --- !u!4 &3744754535535386731 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5486838051108350512, guid: 84370dff02ed9ed418c7deb384051be8, type: 3}
