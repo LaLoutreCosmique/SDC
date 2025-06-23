@@ -618,6 +618,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5094345315346736657, guid: a49484b195c1eb04aa128b16e8c8aa6e, type: 3}
+      propertyPath: m_Name
+      value: Button - Music
+      objectReference: {fileID: 0}
     - target: {fileID: 7144787943963495481, guid: a49484b195c1eb04aa128b16e8c8aa6e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

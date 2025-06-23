@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
@@ -38,8 +39,8 @@ public class GameUI : MonoBehaviour
     [SerializeField] private GameObject m_NewBestScore;
     
     private bool m_IsPaused;
-    private bool m_IsSfxEnabled;
-    private bool m_IsMusicEnabled;
+    private bool m_IsSfxDisable;
+    private bool m_IsMusicDisable;
     private int m_CurrentScore;
     private bool m_IsDay;
     private float m_ButtonsXPos;
@@ -136,32 +137,46 @@ public class GameUI : MonoBehaviour
 
     void ToggleSfx()
     {
-        if (!m_IsMusicEnabled)
+        if (!m_IsSfxDisable)
         {
-            m_IsSfxEnabled = true;
-            SoundsManager.Instance.AudioMixer.SetFloat("SFX", 0f);
+            m_IsSfxDisable = true;
+            SoundsManager.Instance.AudioMixer.SetFloat("VolumeSFX", -80f);
+
+
+
+            m_SfxButton.GetComponent<Image>().color = Color.red;
+            m_SfxButton.GetComponentInChildren<TMP_Text>().text = "Enable SFX";
 
         }
         else
         {
-            m_IsSfxEnabled = false;
-            SoundsManager.Instance.AudioMixer.SetFloat("SFX", -80f);
+            m_IsSfxDisable = false;
+            SoundsManager.Instance.AudioMixer.SetFloat("VolumeSFX", 0f);
+
+            m_SfxButton.GetComponent<Image>().color = Color.green;
+            m_SfxButton.GetComponentInChildren<TMP_Text>().text = "Disable SFX";
         }
     }
 
 
     void ToggleMusic()
     {
-        if (!m_IsMusicEnabled)
+        if (!m_IsMusicDisable)
         {
-            m_IsMusicEnabled = true;
-            SoundsManager.Instance.AudioMixer.SetFloat("Music", 0f);
+            m_IsMusicDisable = true;
+            SoundsManager.Instance.AudioMixer.SetFloat("VolumeMusic", -80f);
 
+
+            m_MusicButton.GetComponent<Image>().color = Color.red;
+            m_MusicButton.GetComponentInChildren<TMP_Text>().text = "Enable Music";
         }
         else
         {
-            m_IsMusicEnabled = false;
-            SoundsManager.Instance.AudioMixer.SetFloat("Music", -80f);
+            m_IsMusicDisable = false;
+            SoundsManager.Instance.AudioMixer.SetFloat("VolumeMusic", 0f);
+
+            m_MusicButton.GetComponent<Image>().color = Color.green;
+            m_MusicButton.GetComponentInChildren<TMP_Text>().text = "Disable Music";
         }
     }
 
