@@ -31,7 +31,7 @@ public class InputManager : MonoBehaviour
         m_PlayerActions.AltMove.performed += ctx => HandleMovement(ctx.ReadValue<Vector2>());
         m_PlayerActions.AltMove.canceled += ctx => HandleMovement(ctx.ReadValue<Vector2>());
         
-        if (SystemInfo.supportsGyroscope)
+        if (SystemInfo.supportsGyroscope && AttitudeSensor.current != null)
         {
             InputSystem.EnableDevice(AttitudeSensor.current);
 
@@ -52,7 +52,7 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        if (SystemInfo.supportsGyroscope && AttitudeSensor.current.enabled)
+        if (SystemInfo.supportsGyroscope && AttitudeSensor.current != null && AttitudeSensor.current.enabled)
         {
             Quaternion rota = AttitudeSensor.current.attitude.ReadValue(); 
             rota = ConvertRightHandedToLeftHandedQuaternion(rota);
