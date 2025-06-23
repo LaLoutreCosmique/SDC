@@ -17,15 +17,47 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Material m_DaySkybox;
     [SerializeField] private GameObject m_DayLight;
 
+    [SerializeField] AudioClip jingleStart;
+    [SerializeField] AudioClip jingleEnd;
+
     void Awake()
     {
         Instance = this;
     }
 
+    private void Start()
+    {
+        GameObject audioObj = new GameObject("2D Audio");
+        AudioSource audioSource = audioObj.AddComponent<AudioSource>();
+
+        audioSource.clip = jingleStart;
+        audioSource.Play();
+
+        Destroy(audioObj, jingleStart.length);
+    }
+
+    bool hasend;
+
     public void OnPlayerFallFCT()
     {
         playerInfos.hasDiedOnce = true;
         OnPlayerFall?.Invoke();
+
+
+        if (!hasend)
+        {
+            hasend = true;
+
+
+            GameObject audioObj = new GameObject("2D Audio");
+            AudioSource audioSource = audioObj.AddComponent<AudioSource>();
+
+            audioSource.clip = jingleEnd;
+            audioSource.Play();
+
+            Destroy(audioObj, jingleEnd.length);
+        }
+        
     }
 
     public void PauseGame()
