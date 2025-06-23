@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundsManager : MonoBehaviour
 {
@@ -12,9 +13,12 @@ public class SoundsManager : MonoBehaviour
     public AudioSource audioSourceRoll;
     public AudioSource audioSourceWind;
 
+    public AudioMixerGroup musicAudioMixer;
+    public AudioMixerGroup sfxAudioMixer;
 
     private void Awake()
     {
+
         if (Instance == null)
         {
             Instance = this;

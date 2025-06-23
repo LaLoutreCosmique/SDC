@@ -31,9 +31,10 @@ public class GameManager : MonoBehaviour
         GameObject audioObj = new GameObject("2D Audio");
         AudioSource audioSource = audioObj.AddComponent<AudioSource>();
 
-        audioSource.clip = jingleStart;
+
+        audioSource.outputAudioMixerGroup = SoundsManager.Instance.sfxAudioMixer;
         audioSource.volume = .35f;
-        audioSource.Play();
+        audioSource.PlayOneShot(jingleStart);
 
         Destroy(audioObj, jingleStart.length);
     }
@@ -54,9 +55,9 @@ public class GameManager : MonoBehaviour
             GameObject audioObj = new GameObject("2D Audio");
             AudioSource audioSource = audioObj.AddComponent<AudioSource>();
 
-            audioSource.clip = jingleEnd;
+            audioSource.outputAudioMixerGroup = SoundsManager.Instance.sfxAudioMixer;
             audioSource.volume = .35f;
-            audioSource.Play();
+            audioSource.PlayOneShot(jingleEnd);
 
             Destroy(audioObj, jingleEnd.length);
         }
