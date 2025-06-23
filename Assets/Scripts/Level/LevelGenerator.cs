@@ -41,6 +41,9 @@ public class LevelGenerator : MonoBehaviour
 	[SerializeField] private SpawnChances propsSpawnChances;
 	private float c1, c2, c3;
 
+	[SerializeField] private GameObject ParticuleRoom;
+	[SerializeField] private float particuleheight = -1.5f;
+
 	const int bagsAmount = 2;
 
 	private void Awake()
@@ -130,6 +133,15 @@ public class LevelGenerator : MonoBehaviour
 				: roomWidth;
 
 			nextPos = new Vector3(cameraOffset.x, cameraOffset.y + lvlOffset * 1.2f, cameraOffset.z - lvlOffset / 2f) + spawnedRooms[^2].transform.position;
+		}
+
+		// spawn Particule
+		if (ParticuleRoom != null)
+		{
+			GameObject particule = Instantiate(ParticuleRoom, newRoom.transform.position, Quaternion.identity);
+			particule.transform.SetParent(newRoom.transform);
+			particule.transform.localPosition = new Vector3(0, particuleheight, 0);
+			particule.GetComponent<ParticleSystem>().Play();
 		}
 
 		// spawn props
