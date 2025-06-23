@@ -24,9 +24,9 @@ public class SoundsManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else { 
-            Destroy(gameObject);
-			Debug.LogWarning("Multiple SoundManager instances detected. Destroying duplicate instance.");
+        else {
+			this.enabled = false;
+			Debug.LogError("Multiple SoundManager instances detected. Destroying duplicate instance.");
 		}
     }
 

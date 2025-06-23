@@ -59,7 +59,9 @@ public class Player : MonoBehaviour
 		rollingAudio.volume = 0f;
 		windAudio.volume = 0f;
 		if (GameManager.Instance != null)
+		{
 			GameManager.Instance.OnPlayerDie += Die;
+		}
 	}
 
 	private void OnDestroy()

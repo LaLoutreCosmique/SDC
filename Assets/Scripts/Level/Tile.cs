@@ -30,11 +30,10 @@ public class Tile : MonoBehaviour
         StairsUR = 5, // UR = up right
     }
 
-
-    private void OnValidate()
+	private void OnValidate()
     {
-        // rotation
-        transform.eulerAngles = Vector3.up * (isFlipped ? 90 : 0);
+		// rotation
+		transform.eulerAngles = Vector3.up * (isFlipped ? 90 : 0);
         EnableChild((int)model, modelsParent);
     }
 

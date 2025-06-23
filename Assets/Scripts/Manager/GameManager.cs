@@ -30,8 +30,7 @@ public class GameManager : MonoBehaviour
 		}
 		else
 		{
-			Destroy(gameObject);
-            Debug.LogWarning("Multiple GameManager instances detected. Destroying duplicate instance.");
+			this.enabled = false;
 		}
 	}
 
@@ -92,14 +91,16 @@ public class GameManager : MonoBehaviour
     public void SetDay()
     {
         RenderSettings.skybox = m_DaySkybox;
-        if (m_DayLight)
-            m_DayLight.SetActive(true);
+        if (m_DayLight == null)
+            m_DayLight = GameObject.FindWithTag("DayLight");
+		m_DayLight.SetActive(true);
     }
 
     public void SetNight()
     {
         RenderSettings.skybox = m_NightSkybox;
-		if (m_DayLight)
-			m_DayLight.SetActive(false);
+		if (m_DayLight == null)
+			m_DayLight = GameObject.FindWithTag("DayLight");
+		m_DayLight.SetActive(false);
     }
 }
