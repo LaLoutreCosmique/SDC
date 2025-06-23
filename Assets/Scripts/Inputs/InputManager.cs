@@ -56,7 +56,7 @@ public class InputManager : MonoBehaviour
         {
             Quaternion rota = AttitudeSensor.current.attitude.ReadValue(); 
             rota = ConvertRightHandedToLeftHandedQuaternion(rota);
-            rota *= Quaternion.Inverse(m_CalibrationRotation);
+            rota = new Quaternion(rota.x - m_CalibrationRotation.x, rota.y-m_CalibrationRotation.y, rota.z-m_CalibrationRotation.z, rota.w-m_CalibrationRotation.w);
             RotaToDirection(rota); 
         }
     }
@@ -102,8 +102,9 @@ public class InputManager : MonoBehaviour
     public void CalibrateGyro()
     {
         if (!SystemInfo.supportsGyroscope) return;
-        
         m_CalibrationRotation = ConvertRightHandedToLeftHandedQuaternion(AttitudeSensor.current.attitude.ReadValue());
+        //m_CalibrationRotation = AttitudeSensor.current.attitude.ReadValue();
+        m_CalibrationRotation = new Quaternion(m_CalibrationRotation.x/2, m_CalibrationRotation.y/2, m_CalibrationRotation.z/2, m_CalibrationRotation.w/2);
         
         PlayerPrefs.SetFloat("GyroX", m_CalibrationRotation.x);
         PlayerPrefs.SetFloat("GyroY", m_CalibrationRotation.y);

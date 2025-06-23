@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
 
 	void Move()
 	{
-		Vector3 movement = new Vector3(moveDirection.x, 0, moveDirection.y * 1.5f/*(1 + slider.value)*/);
+		Vector3 movement = new Vector3(moveDirection.x*1.3f, 0, moveDirection.y * 1.5f/*(1 + slider.value)*/);
 
 		fallForce = Vector3.down * m_FallForce;
 		Ray ray = new Ray(transform.position, Vector3.down);
