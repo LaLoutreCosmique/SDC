@@ -26,17 +26,17 @@ public class InputManager : MonoBehaviour
 		}
 	}
 
-	void Start()
-	{
-		m_PlayerInputs = new PlayerInputs();
-		m_PlayerActions = m_PlayerInputs.Player;
-		m_PlayerActions.Enable();
-		m_PlayerActions.AltMove.performed += ctx => HandleMovement(ctx.ReadValue<Vector2>());
-		m_PlayerActions.AltMove.canceled += ctx => HandleMovement(ctx.ReadValue<Vector2>());
-		
-		if (SystemInfo.supportsGyroscope)
-		{
-			InputSystem.EnableDevice(AttitudeSensor.current);
+    void Start()
+    {
+        m_PlayerInputs = new PlayerInputs();
+        m_PlayerActions = m_PlayerInputs.Player;
+        m_PlayerActions.Enable();
+        m_PlayerActions.AltMove.performed += ctx => HandleMovement(ctx.ReadValue<Vector2>());
+        m_PlayerActions.AltMove.canceled += ctx => HandleMovement(ctx.ReadValue<Vector2>());
+        
+        if (SystemInfo.supportsGyroscope && AttitudeSensor.current != null)
+        {
+            InputSystem.EnableDevice(AttitudeSensor.current);
 
 			GameManager.Instance.OnPlayerFall += CalibrateGyro;
 			GameManager.Instance.OnPlayerDie += CalibrateGyro;
@@ -78,9 +78,9 @@ public class InputManager : MonoBehaviour
 		
 		float xAngle = NormalizeAngle(eulerAngles.x);
 		float zAngle = NormalizeAngle(eulerAngles.z);
-
+		
 		float xInclination = Mathf.Sin(xAngle * Mathf.Deg2Rad);
-		float zInclination = Mathf.Sin(zAngle * Mathf.Deg2Rad);
+        float zInclination = Mathf.Sin(zAngle * Mathf.Deg2Rad);
 
 		Vector2 direction = new Vector2(-zInclination, xInclination);
 		HandleMovement(direction);
