@@ -53,10 +53,7 @@ public class InputManager : MonoBehaviour
 		}
 	}
 
-	private void Instance_OnPlayerDie()
-	{
-		throw new NotImplementedException();
-	}
+// Removed the unused Instance_OnPlayerDie method to clean up the code.
 
 	private void Update()
 	{
