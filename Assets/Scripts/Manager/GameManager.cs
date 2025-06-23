@@ -80,12 +80,14 @@ public class GameManager : MonoBehaviour
     public void SetDay()
     {
         RenderSettings.skybox = m_DaySkybox;
-        m_DayLight.SetActive(true);
+        if (m_DayLight)
+            m_DayLight.SetActive(true);
     }
 
     public void SetNight()
     {
         RenderSettings.skybox = m_NightSkybox;
-        m_DayLight.SetActive(false);
+		if (m_DayLight)
+			m_DayLight.SetActive(false);
     }
 }
