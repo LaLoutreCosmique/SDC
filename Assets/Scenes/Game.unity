@@ -853,6 +853,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 270783037998084972, guid: 4f7891527212bc043940a8e321c8b61d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -3.7407227
+      objectReference: {fileID: 0}
     - target: {fileID: 5135009012774562816, guid: 4f7891527212bc043940a8e321c8b61d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2127,6 +2131,8 @@ MonoBehaviour:
     maxChance1: 50
     maxChance2: 30
     maxChance3: 10
+  ParticuleRoom: {fileID: 1905756763996513365, guid: 8c2f3632cdc0cfe4995726c0fd8fd573, type: 3}
+  particuleheight: -2
 --- !u!114 &2030548928
 MonoBehaviour:
   m_ObjectHideFlags: 0
