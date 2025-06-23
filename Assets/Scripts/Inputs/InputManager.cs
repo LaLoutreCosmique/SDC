@@ -53,8 +53,6 @@ public class InputManager : MonoBehaviour
 		}
 	}
 
-// Removed the unused Instance_OnPlayerDie method to clean up the code.
-
 	private void Update()
 	{
 		if (SystemInfo.supportsGyroscope && AttitudeSensor.current.enabled)
