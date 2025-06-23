@@ -9420,6 +9420,11 @@ MonoBehaviour:
   cameraTest: {fileID: 1553252448}
   spawnedRooms: []
   cameraOffset: {x: 0, y: 8, z: -2}
+  propsSpawnChances:
+    minChance: 0
+    maxChance1: 0
+    maxChance2: 0
+    maxChance3: 0
 --- !u!114 &2030548928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10162,6 +10167,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5486838051108350512, guid: 84370dff02ed9ed418c7deb384051be8, type: 3}
   m_PrefabInstance: {fileID: 2144046672}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1756888578860079358
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6956560228476398599, guid: 71be7c72b7b01dc4a99ba8308bec969b, type: 3}
+      propertyPath: m_Name
+      value: FX_Explosion_A_2_air_dust
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956560228476398600, guid: 71be7c72b7b01dc4a99ba8308bec969b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.4295223
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956560228476398600, guid: 71be7c72b7b01dc4a99ba8308bec969b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956560228476398600, guid: 71be7c72b7b01dc4a99ba8308bec969b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.437595
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956560228476398600, guid: 71be7c72b7b01dc4a99ba8308bec969b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956560228476398600, guid: 71be7c72b7b01dc4a99ba8308bec969b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956560228476398600, guid: 71be7c72b7b01dc4a99ba8308bec969b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956560228476398600, guid: 71be7c72b7b01dc4a99ba8308bec969b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956560228476398600, guid: 71be7c72b7b01dc4a99ba8308bec969b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956560228476398600, guid: 71be7c72b7b01dc4a99ba8308bec969b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956560228476398600, guid: 71be7c72b7b01dc4a99ba8308bec969b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 71be7c72b7b01dc4a99ba8308bec969b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -10176,3 +10238,4 @@ SceneRoots:
   - {fileID: 1127110003}
   - {fileID: 1664784394}
   - {fileID: 364738973}
+  - {fileID: 1756888578860079358}

@@ -123,15 +123,17 @@ public class Player : MonoBehaviour
         {
             AudioClip clip = wallImpactClips[UnityEngine.Random.Range(0, wallImpactClips.Length)];
             AudioSource.PlayClipAtPoint(clip, collision.contacts[0].point, impactVolume);
+
+            Handheld.Vibrate();
         }
 
         // VFX
-        //if (impactVFXPrefab != null)
-        //{
-        //    ContactPoint contact = collision.contacts[0];
-        //    Quaternion rotation = Quaternion.LookRotation(contact.normal);
-        //    Instantiate(impactVFXPrefab, contact.point, rotation);
-        //}
+        if (impactVFXPrefab != null)
+        {
+            ContactPoint contact = collision.contacts[0];
+            Quaternion rotation = Quaternion.LookRotation(contact.normal);
+            Instantiate(impactVFXPrefab, contact.point, rotation);
+        }
     }
 
     private void FixedUpdate()

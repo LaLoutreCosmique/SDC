@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
         AudioSource audioSource = audioObj.AddComponent<AudioSource>();
 
         audioSource.clip = jingleStart;
+        audioSource.volume = .35f;
         audioSource.Play();
 
         Destroy(audioObj, jingleStart.length);
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
             AudioSource audioSource = audioObj.AddComponent<AudioSource>();
 
             audioSource.clip = jingleEnd;
+            audioSource.volume = .35f;
             audioSource.Play();
 
             Destroy(audioObj, jingleEnd.length);

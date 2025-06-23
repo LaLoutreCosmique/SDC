@@ -41,10 +41,12 @@ public class TTLever : TriggerTile
         if (activated)
         {
             AudioSource.PlayClipAtPoint(clipLeverOn, transform.position, .17f);
+            Handheld.Vibrate();
         }
         else
         {
             AudioSource.PlayClipAtPoint(clipLeverOff, transform.position, .17f);
+            Handheld.Vibrate();
         }
 	}
 

@@ -79,11 +79,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c6b5579507c53f4479baa07defc68c85, type: 3}
   - {fileID: 8300000, guid: 054f401638d3ea44ba439445d80ac776, type: 3}
   - {fileID: 8300000, guid: 3d37c12a57cbb7c488d479911559fddb, type: 3}
-  impactVFXPrefab: {fileID: 0}
+  impactVFXPrefab: {fileID: 6956560228476398599, guid: 71be7c72b7b01dc4a99ba8308bec969b, type: 3}
   impactVolume: 0.15
   wallTag: Wall
   pillarTag: Pillar
-  impactSpeedThreshold: 0.2
+  impactSpeedThreshold: 1.05
   impactCooldown: 0.7
 --- !u!33 &8428418861735226729
 MeshFilter:

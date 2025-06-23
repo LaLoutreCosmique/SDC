@@ -28,6 +28,7 @@ public class ChangeLevelTrigger : MonoBehaviour
             AudioSource audioSource = audioObj.AddComponent<AudioSource>();
 
             audioSource.clip = levelCompleteSound;
+            audioSource.volume = .35f;
             audioSource.Play();
 
             Destroy(audioObj, levelCompleteSound.length);
