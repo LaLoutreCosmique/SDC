@@ -1841,7 +1841,6 @@ GameObject:
   - component: {fileID: 1553252448}
   - component: {fileID: 1553252447}
   - component: {fileID: 1553252445}
-  - component: {fileID: 1553252449}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -1959,19 +1958,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
---- !u!114 &1553252449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1553252444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 433eee0f8ff7724409a0ce343b91c6ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 8fc56946a1b593c4d8e3e0e94483338e, type: 2}
 --- !u!1001 &1664442705
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2290,8 +2276,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInfos: {fileID: 11400000, guid: 6bc3c70f01aae364cab5cf3ad6d24eed, type: 2}
-  m_NightSkybox: {fileID: 0}
-  m_DaySkybox: {fileID: 0}
+  m_NightSkybox: {fileID: 2100000, guid: 52fcefd712182d743a781fde12426775, type: 2}
+  m_DaySkybox: {fileID: 2100000, guid: 56113b3b655ab7349bab4d7d405c258a, type: 2}
   m_DayLight: {fileID: 0}
   jingleStart: {fileID: 8300000, guid: 691bd9a32a810c042b0b53fe69efbe2a, type: 3}
   jingleEnd: {fileID: 8300000, guid: 9571c23f7f9c2f94cbb7262e56123cbc, type: 3}
