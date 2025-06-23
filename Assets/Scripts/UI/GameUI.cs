@@ -58,7 +58,7 @@ public class GameUI : MonoBehaviour
         });
         m_SfxButton.onClick.AddListener(ToggleSfx);
         m_MusicButton.onClick.AddListener(ToggleMusic);
-        m_CalibrateButton.onClick.AddListener(m_InputManager.CalibrateGyro);
+        //m_CalibrateButton.onClick.AddListener(m_InputManager.CalibrateGyro);
         m_DayModeButton.onClick.AddListener(ToggleDayMode);
         m_QuitButton.onClick.AddListener(GoToMainMenu);
         m_RestartButton.onClick.AddListener(RestartGame);

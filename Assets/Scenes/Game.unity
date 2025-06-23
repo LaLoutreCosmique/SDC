@@ -598,6 +598,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7144787943963495481, guid: a49484b195c1eb04aa128b16e8c8aa6e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2030548928}
+    - target: {fileID: 7144787943963495481, guid: a49484b195c1eb04aa128b16e8c8aa6e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CalibrateGyro
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144787943963495481, guid: a49484b195c1eb04aa128b16e8c8aa6e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InputManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144787943963495481, guid: a49484b195c1eb04aa128b16e8c8aa6e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7395456450849918985, guid: a49484b195c1eb04aa128b16e8c8aa6e, type: 3}
       propertyPath: m_InputManager
       value: 
