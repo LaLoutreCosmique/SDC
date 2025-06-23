@@ -2132,7 +2132,7 @@ MonoBehaviour:
     maxChance2: 30
     maxChance3: 10
   ParticuleRoom: {fileID: 1905756763996513365, guid: 8c2f3632cdc0cfe4995726c0fd8fd573, type: 3}
-  particuleheight: -2
+  particuleheight: -5
 --- !u!114 &2030548928
 MonoBehaviour:
   m_ObjectHideFlags: 0

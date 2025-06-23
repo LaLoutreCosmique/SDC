@@ -138,8 +138,9 @@ public class LevelGenerator : MonoBehaviour
 		// spawn Particule
 		if (ParticuleRoom != null)
 		{
-			GameObject particule = Instantiate(ParticuleRoom, newRoom.transform.position + Vector3.up * particuleheight, Quaternion.identity);
+			GameObject particule = Instantiate(ParticuleRoom, newRoom.transform.position, Quaternion.identity);
 			particule.transform.SetParent(newRoom.transform);
+			particule.transform.localPosition = new Vector3(0, particuleheight, 0);
 			particule.GetComponent<ParticleSystem>().Play();
 		}
 
