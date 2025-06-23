@@ -534,6 +534,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GUI
       objectReference: {fileID: 0}
+    - target: {fileID: 2810419341444171220, guid: a49484b195c1eb04aa128b16e8c8aa6e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3929925644695376623, guid: a49484b195c1eb04aa128b16e8c8aa6e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -622,6 +626,10 @@ PrefabInstance:
       propertyPath: m_LoadingScreen
       value: 
       objectReference: {fileID: 855883563}
+    - target: {fileID: 7735741099128051551, guid: a49484b195c1eb04aa128b16e8c8aa6e, type: 3}
+      propertyPath: m_Name
+      value: Button - Restart
+      objectReference: {fileID: 0}
     - target: {fileID: 8339228534930351565, guid: a49484b195c1eb04aa128b16e8c8aa6e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

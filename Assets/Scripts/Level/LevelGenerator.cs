@@ -58,7 +58,7 @@ public class LevelGenerator : MonoBehaviour
 		}
 		else
 		{
-			this.enabled = false;
+			Destroy(gameObject);
 		}
 	}
 

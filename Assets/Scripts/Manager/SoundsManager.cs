@@ -13,7 +13,7 @@ public class SoundsManager : MonoBehaviour
     public AudioSource audioSourceRoll;
     public AudioSource audioSourceWind;
 
-    public AudioMixerGroup musicAudioMixer;
+    public AudioMixer AudioMixer;
     public AudioMixerGroup sfxAudioMixer;
 
     private void Awake()

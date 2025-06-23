@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 		}
 		else
 		{
-			this.enabled = false;
+            Destroy(gameObject);
 		}
 	}
 

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -131,12 +133,33 @@ public class GameUI : MonoBehaviour
 
     void ToggleSfx()
     {
-        Debug.Log("Y A PAS DE SON AAAAAH");
+        if (!m_IsMusicEnabled)
+        {
+            m_IsSfxEnabled = true;
+            SoundsManager.Instance.AudioMixer.SetFloat("SFX", 0f);
+
+        }
+        else
+        {
+            m_IsSfxEnabled = false;
+            SoundsManager.Instance.AudioMixer.SetFloat("SFX", -80f);
+        }
     }
+
 
     void ToggleMusic()
     {
-        Debug.Log("Y A PAS DE MUSIQUE AAAAAAH");
+        if (!m_IsMusicEnabled)
+        {
+            m_IsMusicEnabled = true;
+            SoundsManager.Instance.AudioMixer.SetFloat("Music", 0f);
+
+        }
+        else
+        {
+            m_IsMusicEnabled = false;
+            SoundsManager.Instance.AudioMixer.SetFloat("Music", -80f);
+        }
     }
 
     void GoToMainMenu()

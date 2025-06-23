@@ -7662,7 +7662,7 @@ MonoBehaviour:
   grounded: 0
   audioSourceRoll: {fileID: 2031190782}
   audioSourceWind: {fileID: 575980370}
-  musicAudioMixer: {fileID: -7646669890268776916, guid: 41ed5ddef0b3f8149adef3e091ebb070, type: 2}
+  AudioMixer: {fileID: 24100000, guid: 41ed5ddef0b3f8149adef3e091ebb070, type: 2}
   sfxAudioMixer: {fileID: -2725401623942607439, guid: 41ed5ddef0b3f8149adef3e091ebb070, type: 2}
 --- !u!4 &1664784394
 Transform:
