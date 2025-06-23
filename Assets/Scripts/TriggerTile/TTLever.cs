@@ -6,7 +6,17 @@ public class TTLever : TriggerTile
 	[SerializeField] private bool activated = false;
 	private Animator animator;
 
-	private void Start()
+	[SerializeField] private AudioClip clipLeverOn, clipLeverOff;
+	[SerializeField] private AudioClip clipDoorOn, clipDoorOff;
+
+    private void Awake()
+    {
+
+        clipLeverOn = (AudioClip)Resources.Load("Sounds/Interactable_Lever_On");
+        clipLeverOff = (AudioClip)Resources.Load("Sounds/Interactable_Lever_Off");
+    }
+
+    private void Start()
 	{
 		animator = model.GetComponent<Animator>() ?? model.AddComponent<Animator>();
 		animator.SetBool("Activated", activated);
@@ -27,6 +37,17 @@ public class TTLever : TriggerTile
 		}
 		activated = !activated;
 		animator.SetBool("Activated", activated);
+
+        if (activated)
+        {
+            AudioSource.PlayClipAtPoint(clipLeverOn, transform.position, .17f);
+            Handheld.Vibrate();
+        }
+        else
+        {
+            AudioSource.PlayClipAtPoint(clipLeverOff, transform.position, .17f);
+            Handheld.Vibrate();
+        }
 	}
 
 	public override void TTReset()

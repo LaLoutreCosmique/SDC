@@ -9,26 +9,67 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public event Action OnPlayerFall;
+    public event Action OnPlayerDie;
 
-    [SerializeField] PlayerInfos playerInfos;
+	[SerializeField] PlayerInfos playerInfos;
     
     [Header("DAY MODE")]
     [SerializeField] private Material m_NightSkybox;
     [SerializeField] private Material m_DaySkybox;
     [SerializeField] private GameObject m_DayLight;
 
+    [SerializeField] AudioClip jingleStart;
+    [SerializeField] AudioClip jingleEnd;
+
     void Awake()
     {
         Instance = this;
     }
 
+    private void Start()
+    {
+        GameObject audioObj = new GameObject("2D Audio");
+        AudioSource audioSource = audioObj.AddComponent<AudioSource>();
+
+        audioSource.clip = jingleStart;
+        audioSource.volume = .35f;
+        audioSource.Play();
+
+        Destroy(audioObj, jingleStart.length);
+    }
+
+    bool hasend;
+
     public void OnPlayerFallFCT()
     {
         playerInfos.hasDiedOnce = true;
         OnPlayerFall?.Invoke();
+
+
+        if (!hasend)
+        {
+            hasend = true;
+
+
+            GameObject audioObj = new GameObject("2D Audio");
+            AudioSource audioSource = audioObj.AddComponent<AudioSource>();
+
+            audioSource.clip = jingleEnd;
+            audioSource.volume = .35f;
+            audioSource.Play();
+
+            Destroy(audioObj, jingleEnd.length);
+        }
+        
     }
 
-    public void PauseGame()
+    public void OnPlayerDieFCT()
+    {
+        playerInfos.hasDiedOnce = true;
+        OnPlayerDie?.Invoke();
+	}
+
+	public void PauseGame()
     {
         Time.timeScale = 0;
     }

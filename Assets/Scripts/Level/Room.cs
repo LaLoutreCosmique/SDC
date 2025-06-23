@@ -40,8 +40,8 @@ public class Room : MonoBehaviour
 
 	private void Start()
     {
-	    tiles = GetComponentsInChildren<Tile>().ToList();
-        foreach (Tile tile in tiles)
+		tiles = GetComponentsInChildren<Tile>().ToList();
+		foreach (Tile tile in tiles)
 		{
 			tile.parentRoom = this;
             if (tile.triggerType != "None")
@@ -56,6 +56,10 @@ public class Room : MonoBehaviour
 
     public List<Tile> GetAllTiles()
 	{
+        if (tiles.Count == 0)
+        {
+			tiles = GetComponentsInChildren<Tile>().ToList();
+		}
 		return tiles;
 	}
     
