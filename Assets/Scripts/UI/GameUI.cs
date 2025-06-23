@@ -43,6 +43,7 @@ public class GameUI : MonoBehaviour
     private int m_CurrentScore;
     private bool m_IsDay;
     private float m_ButtonsXPos;
+    private Vector2 m_PauseButtonPos;
     List<RectTransform> m_PauseButtons; 
     
     const string m_BestScoreKey = "BEST_SCORE";
@@ -59,7 +60,7 @@ public class GameUI : MonoBehaviour
         });
         m_SfxButton.onClick.AddListener(ToggleSfx);
         m_MusicButton.onClick.AddListener(ToggleMusic);
-        m_CalibrateButton.onClick.AddListener(m_InputManager.CalibrateGyro);
+        //m_CalibrateButton.onClick.AddListener(m_InputManager.CalibrateGyro);
         m_DayModeButton.onClick.AddListener(ToggleDayMode);
         m_QuitButton.onClick.AddListener(GoToMainMenu);
         m_RestartButton.onClick.AddListener(RestartGame);
@@ -76,6 +77,7 @@ public class GameUI : MonoBehaviour
         };
         
         m_ButtonsXPos = m_ResumeButton.GetComponent<RectTransform>().anchoredPosition.x;
+        m_PauseButtonPos = m_PauseButton.GetComponent<RectTransform>().anchoredPosition;
         
         if (PlayerPrefs.GetInt(m_DayModeKey) == 1)
             ToggleDayMode();
@@ -100,6 +102,7 @@ public class GameUI : MonoBehaviour
             PauseGame();
         
         RectTransform pauseBtnRect = m_PauseButton.GetComponent<RectTransform>();
+        pauseBtnRect.anchoredPosition = m_PauseButtonPos;
         pauseBtnRect.DOJumpAnchorPos(pauseBtnRect.anchoredPosition, 5f, 1, 0.5f).SetEase(Ease.OutBounce).SetUpdate(true);
     }
 
@@ -119,7 +122,7 @@ public class GameUI : MonoBehaviour
     {
         foreach (var button in m_PauseButtons)
         {
-            button.DOAnchorPosX(0f, .3f).SetUpdate(true);
+            button.DOAnchorPosX(m_ButtonsXPos, .3f).SetUpdate(true);
             yield return new WaitForSecondsRealtime(0.03f);
         }
     }
