@@ -2431,6 +2431,8 @@ MonoBehaviour:
   modelPrefab: {fileID: 5624148303022369555, guid: 74f43ab198174c3418c87760c2e52c32, type: 3}
   model: {fileID: 1690254135635114307}
   activated: 0
+  clipOn: {fileID: 0}
+  clipOff: {fileID: 0}
 --- !u!1001 &3441222649522531807
 PrefabInstance:
   m_ObjectHideFlags: 0

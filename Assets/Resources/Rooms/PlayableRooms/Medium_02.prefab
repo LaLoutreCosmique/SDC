@@ -5605,6 +5605,8 @@ MonoBehaviour:
   modelPrefab: {fileID: 5624148303022369555, guid: 74f43ab198174c3418c87760c2e52c32, type: 3}
   model: {fileID: 3831859223563485445}
   activated: 0
+  clipOn: {fileID: 0}
+  clipOff: {fileID: 0}
 --- !u!1001 &5026284722331057267
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5777,6 +5779,8 @@ MonoBehaviour:
   modelPrefab: {fileID: 5624148303022369555, guid: 74f43ab198174c3418c87760c2e52c32, type: 3}
   model: {fileID: 2094118462203650081}
   activated: 0
+  clipOn: {fileID: 0}
+  clipOff: {fileID: 0}
 --- !u!1001 &5273826684077029803
 PrefabInstance:
   m_ObjectHideFlags: 0

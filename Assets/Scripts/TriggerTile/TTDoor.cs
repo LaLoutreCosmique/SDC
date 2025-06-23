@@ -44,7 +44,16 @@ public class TTDoor : TriggerTile
 	private List<TTLever> roomLevers;
 	private List<TTDoor> roomDoors;
 
-	private void Start()
+
+    [SerializeField] private AudioClip clipDoorOn, clipDoorOff;
+
+    private void Awake()
+    {
+        clipDoorOn = (AudioClip)Resources.Load("Sounds/Interactable_Gate_Open");
+        clipDoorOff = (AudioClip)Resources.Load("Sounds/Interactable_Gate_Close");
+    }
+
+    private void Start()
 	{
 		animator = model.GetComponent<Animator>();
 		animator.SetBool("IsOpen", isOpen);
@@ -83,14 +92,19 @@ public class TTDoor : TriggerTile
 		animator.SetBool("IsOpen", true);
 		isOpen = true;
 		doorCollider.enabled = false;
-	}
+
+        AudioSource.PlayClipAtPoint(clipDoorOn, transform.position, .25f);
+    }
 
 	private void CloseDoor()
 	{
 		animator.SetBool("IsOpen", false);
 		isOpen = false;
 		doorCollider.enabled = true;
-	}
+
+
+        AudioSource.PlayClipAtPoint(clipDoorOff, transform.position, .25f);
+    }
 
 	public bool CheckAllConditions()
 	{

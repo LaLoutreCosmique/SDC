@@ -69,6 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   room: {fileID: 8162849660827493496}
   NoReturnCollider: {fileID: 6495741174018105096}
+  levelCompleteSound: {fileID: 0}
 --- !u!1 &5187652774583096592
 GameObject:
   m_ObjectHideFlags: 0
