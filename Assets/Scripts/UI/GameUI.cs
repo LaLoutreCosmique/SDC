@@ -117,7 +117,7 @@ public class GameUI : MonoBehaviour
     {
         foreach (var button in m_PauseButtons)
         {
-            button.DOAnchorPosX(0f, .3f).SetUpdate(true);
+            button.DOAnchorPosX(m_ButtonsXPos, .3f).SetUpdate(true);
             yield return new WaitForSecondsRealtime(0.03f);
         }
     }
